@@ -1,0 +1,124 @@
+{
+  "examples": [
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action, cinematic, a low-angle medium-wide tracking shot follows two athletic martial artists sparring on a rain-slick rooftop at blue hour, city lights glowing behind them. The camera arcs right at fast speed as the fighter in a red jacket ducks beneath a spinning kick, plants one hand on the wet concrete, sweeps the other fighter's legs, and both recover into guarded stances without injury. Water sprays from each footfall and a loose rooftop cable whips in the wind.",
+      "overall_soundscape": "Strong rooftop wind, rapid shoe scrapes, fabric snaps, controlled grunts, and three crisp padded impacts echo between nearby buildings. Distant traffic and a low thunder roll remain underneath.",
+      "non_diegetic_music": "Fast taiko drums and short low-string ostinatos accelerate, then stop sharply on the final stance."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action sports documentary style, a handheld ringside close shot frames two female boxers wearing headguards and gloves during controlled sparring in a small neighborhood gym. The camera tracks left at fast speed as the boxer in blue slips a jab, answers with a rapid body-head combination against the pads, and pivots away while sweat droplets catch the overhead light in brief slow motion. Her coach with a firm, energetic voice (S1) calls: <d>[English] Move, breathe, reset!</d>",
+      "overall_soundscape": "Gloves thud against padded targets, shoes squeak on canvas, the round timer beeps once, and both athletes breathe sharply. A jump rope and muffled training activity continue in the background.",
+      "non_diegetic_music": "A tight electronic beat at a fast tempo with clipped bass pulses, fading under the final breath."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action, energetic urban realism, a wide tracking shot follows a young parkour runner in a gray hoodie sprinting across a sunlit concrete plaza. The camera trucks right with large amplitude at fast speed as he vaults a handrail, lands on a narrow wall, takes two balanced steps, and leaps across a short gap. [Shot 2] At 00:03.600, the camera cuts to a low close shot of his shoes absorbing the landing before he rolls forward and rises into a run.",
+      "overall_soundscape": "Fast footsteps slap concrete, palms brush metal, clothing flutters, and a landing produces a deep shoe impact followed by a quick roll. Pigeons flap away as distant city traffic continues.",
+      "non_diegetic_music": "Syncopated hand percussion and muted electric bass at a fast tempo, ending with one sustained bass note."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action, cinematic portrait, an extreme close-up frames an elderly East Asian woman's face beside a softly lit window at dawn, revealing fine skin texture, silver eyelashes, and a warm reflection in her dark eyes. The camera pushes in with small amplitude at slow speed as she looks just past the lens, inhales, and forms a restrained smile while one tear gathers and travels naturally down her cheek. Her lips remain closed and the pale curtain moves gently behind her.",
+      "overall_soundscape": "Quiet room tone, a slow breath, faint fabric movement, and distant morning birds are audible.",
+      "non_diegetic_music": "Three widely spaced felt-piano notes with a soft sustained cello harmonic, gradually decreasing in volume."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action, naturalistic, an over-the-shoulder medium close shot frames two old friends seated across from each other in a nearly empty late-night café, warm pendant lamps reflected in the dark window. The camera trucks left with small amplitude at slow speed as the tired man with a low, hesitant voice (S1) places a key on the table and says: <d>[English] I kept it all these years.</d> [Shot 2] At 00:03.200, the camera cuts to the woman with a soft, steady voice (S2) in close-up; she looks at the key, meets his eyes, and replies: <d>[English] Then open the door.</d>",
+      "overall_soundscape": "Rain taps the windows, a ceramic cup settles onto a saucer, and a refrigerator hum fills the quiet café.",
+      "non_diegetic_music": "Sparse upright-piano chords at a slow tempo with a very soft brushed-cymbal swell."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action action-camera footage in first-person POV, the viewer races down a narrow forest mountain-bike trail in bright afternoon light. Gloved hands grip the handlebars as the camera shakes slightly at fast speed, weaving between pine trunks, dropping over a rocky ledge, splashing through a shallow stream, and banking hard around a muddy turn while the front suspension compresses visibly. Sunbeams flicker rapidly through the canopy and droplets strike the lens.",
+      "overall_soundscape": "The freewheel buzzes, tires grind over gravel, suspension knocks, water splashes, and the rider breathes hard while wind rush grows louder on the descent.",
+      "non_diegetic_music": "N/A"
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Photorealistic 3D CG, first-person POV from the pilot seat of a compact spacecraft waiting inside a dark orbital hangar. Instrument panels cast blue light across gloved hands as warning indicators pulse and the hangar doors separate to reveal a planet's bright curved horizon. The cockpit shakes strongly while the pilot pushes both throttles forward; engines ignite, the craft accelerates through drifting vapor, and the star field expands beyond the opening. A calm synthetic computer voice (S1) announces: <d>[English] Launch corridor clear.</d>",
+      "overall_soundscape": "Cooling fans hum, switches click, warning tones pulse twice, engines rise from a low vibration to a powerful roar, and the pilot's harness creaks under acceleration.",
+      "non_diegetic_music": "Low brass, granular electronic pulses, and a rising string glissando build quickly before cutting to silence."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action, cinematic landscape, an ultra-wide aerial view glides above a mirror-still alpine lake before sunrise, with dark fir trees in the foreground and snow-covered peaks filling the horizon. The camera pedestals up with large amplitude at slow speed as the first orange sunlight reaches the summit, travels down the ridges, and turns thin valley mist gold; a small flock of birds crosses the reflection and subtle ripples spread from the shore.",
+      "overall_soundscape": "A light mountain breeze moves through pine needles, distant birds call, and gentle water laps against stones in the otherwise open valley.",
+      "non_diegetic_music": "Long French-horn tones and slowly expanding string chords at a very slow tempo, ending in a soft sustained note."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action, dramatic maritime cinematography, a wide static shot frames a solitary lighthouse on black cliffs during a violent night storm. A towering wave rises, crashes across the rocks, and sends white spray past the lantern room as its rotating beam sweeps through rain. Lightning briefly reveals the entire coastline. [Shot 2] At 00:03.700, the camera cuts to a close shot of seawater streaming down the lighthouse glass while the warm lamp continues rotating behind it.",
+      "overall_soundscape": "Heavy rain lashes stone and glass, gale-force wind howls around the tower, surf crashes with deep impacts, and one thunderclap rolls across the coast.",
+      "non_diegetic_music": "Low contrabass drones with slow metallic percussion strikes, rising in volume until the lightning flash."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action wildlife documentary style, a telephoto tracking shot follows a cheetah sprinting across dry golden grass in late-afternoon light while a gazelle changes direction ahead of it. The camera pans right with large amplitude at fast speed, keeping both animals sharp as dust trails behind their feet; the gazelle bounds over a fallen branch, the cheetah brakes and turns, and both continue safely out of frame without contact.",
+      "overall_soundscape": "Rapid paw impacts, grass brushing against bodies, short animal breaths, and wind over the open savanna dominate the scene. A few distant bird calls remain audible.",
+      "non_diegetic_music": "Fast hand drums and plucked low strings repeat in an uneven rhythm, then diminish as the animals leave frame."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action macro cinematography, an extreme close-up shows a bumblebee clinging to a purple lavender flower just after rain, individual hairs and transparent wing veins sharply visible. The camera holds a static shot as a water droplet slides down the stem, the flower bends under its weight, and the bee opens its wings in slow motion. The droplet falls past the lens at the instant the bee lifts off, scattering tiny sparkling beads against a creamy green background.",
+      "overall_soundscape": "Close wing buzz, delicate leaf rustle, individual droplets touching petals, and soft garden ambience fill the scene.",
+      "non_diegetic_music": "A sparse marimba pattern with high glass harmonics at a slow tempo, fading after the bee departs."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action, high-contrast automotive commercial, a low tracking shot follows a red sports coupe entering a rain-soaked neon intersection at night. The camera arcs left at fast speed as the driver initiates a controlled drift, the rear tires sweep through standing water, and reflections of cyan and magenta signs stretch across the rotating bodywork. The car straightens precisely and accelerates toward a tunnel while vapor trails behind it.",
+      "overall_soundscape": "The engine revs rapidly, tires hiss and squeal on wet asphalt, water sprays against the wheel wells, and the exhaust cracks once as the car accelerates away.",
+      "non_diegetic_music": "Fast electronic drums, distorted bass pulses, and a rising synthesizer arpeggio cut off at the tunnel entrance."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action food cinematography, a close overhead shot frames a chef's hands cooking noodles in a black steel wok over a blue gas flame in a busy open kitchen. The camera pushes in with small amplitude at normal speed as the chef tosses noodles and vegetables into the air, catches them cleanly, pours in sauce that flashes into steam, and finishes with chopped scallions. The middle-aged chef with a cheerful, resonant voice (S1) says: <d>[English] High heat, quick hands.</d>",
+      "overall_soundscape": "Oil sizzles continuously, the burner roars, metal utensils strike the wok, vegetables crackle, and nearby cooks call indistinctly over ventilation noise.",
+      "non_diegetic_music": "A brisk pizzicato-string rhythm with light woodblock accents, ending on the final garnish."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Photorealistic industrial documentary style, a symmetrical wide shot frames an automated electric-car assembly line under cool white factory lights. The camera trucks right at slow speed beside an unfinished chassis as six orange robotic arms rotate in coordinated sequence, position a roof panel, clamp it, and fire a precise series of blue-white welding sparks. An autonomous cart crosses behind the chassis while safety lights change from amber to green.",
+      "overall_soundscape": "Servo motors whine, pneumatic clamps snap shut, conveyor rollers hum, warning chimes sound briefly, and welding crackles in short synchronized bursts.",
+      "non_diegetic_music": "Minimal electronic percussion built from metallic clicks at a steady moderate tempo, with a low synthesizer tone rising slightly at the end."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action underwater cinematography, a wide tracking shot follows a lone scuba diver swimming above a bright coral reef in clear tropical water. The camera pulls out with large amplitude at slow speed as a giant manta ray emerges from blue haze, glides directly over the diver, and banks gracefully toward a column of sunbeams; the diver turns upward and releases a stream of silver bubbles while schools of small fish divide around them.",
+      "overall_soundscape": "Muffled regulator breaths and bubbles pulse rhythmically, with soft underwater current noise and distant reef clicks surrounding the diver.",
+      "non_diegetic_music": "Sustained bowed-vibraphone tones and slow airy synthesizer chords, increasing gently as the manta ray passes overhead."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action survival drama, a medium-wide handheld shot frames a mountain rescuer in a red shell jacket struggling through a whiteout snowstorm with a search dog on a rope. The camera tracks backward at slow speed as the dog suddenly pulls left, digs beside a half-buried backpack, and barks; the rescuer drops to one knee, brushes away snow, and raises a radio. The wind-driven snow repeatedly obscures and reveals both figures. The rescuer with a breathless, urgent voice (S1) reports: <d>[English] I found the marker!</d>",
+      "overall_soundscape": "Fierce wind, crunching boots, strained breathing, rope hardware clinking, rapid digging, two sharp barks, and radio static fill the storm.",
+      "non_diegetic_music": "Repeating low piano notes and sustained viola tones gradually increase in speed and volume."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Hand-drawn 2D animation with watercolor backgrounds, a wide shot frames a young mage standing on a cliff above a floating island city at sunset as a long blue dragon dives from the clouds. The camera tilts up with large amplitude at fast speed while the mage spins a staff, draws a glowing circular shield, and redirects the dragon's harmless stream of golden fire into a ribbon that spirals around both characters. The dragon folds its wings and lands beside the smiling mage.",
+      "overall_soundscape": "High wind crosses the cliff, wings beat with deep rhythmic force, the staff rings like glass, magical energy crackles, and the dragon releases a low friendly rumble.",
+      "non_diegetic_music": "Rapid orchestral strings, two brass swells, and bright celesta notes resolve into one held chord."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Claymation stop-motion style, a miniature flour-dusted kitchen is seen in a medium-wide static shot as a thumb-sized baker made of red clay struggles to carry an oversized strawberry toward a tiny cake. The baker slips, the strawberry rolls in a circle around the mixing bowl, and three clay mice push it together until it lands perfectly on top of the cake; all four characters freeze, then cheer with raised arms. The tiny baker with a high, squeaky voice (S1) exclaims: <d>[English] Perfect teamwork!</d>",
+      "overall_soundscape": "Small clay footsteps make soft taps, the strawberry bumps against wooden utensils, the bowl rattles, and the mice squeak before a brief group cheer.",
+      "non_diegetic_music": "Playful bassoon and pizzicato violin at a bouncy moderate tempo, ending with a short triangle note."
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action, vintage 16 mm film look, a medium-wide shot frames a four-piece jazz group performing under warm string lights in a narrow city alley at night while pedestrians gather nearby. The camera arcs right at slow speed as the saxophonist plays a bright solo, the upright bassist plucks steadily, the drummer brushes the snare, and two onlookers begin dancing. The live saxophone, bass, and drums are heard by everyone in the scene and remain synchronized with the musicians' fingers and breathing.",
+      "overall_soundscape": "The diegetic jazz performance fills the alley with saxophone phrases, walking bass, and brushed drums, mixed with quiet applause, shoe taps, and distant traffic.",
+      "non_diegetic_music": "N/A"
+    },
+    {
+      "task": "t2va",
+      "integrated_multimodal_description": "[Shot 1] Live-action psychological horror, a first-person POV moves down a dim abandoned hospital corridor illuminated by a flickering fluorescent tube. The camera pushes in at slow speed with slight handheld shake as a wheelchair at the far end rolls sideways by itself, revealing an empty doorway; the light cuts out for one second, then returns with the wheelchair suddenly close to the camera. A gloved hand enters frame and stops against the wall while the camera remains fixed on the motionless chair.",
+      "overall_soundscape": "Fluorescent electricity buzzes and stutters, slow footsteps echo, a loose wheel squeaks, distant pipes knock once, and the unseen viewer's breathing becomes faster in the final second.",
+      "non_diegetic_music": "A nearly inaudible low-frequency drone rises continuously, followed by one sharp reversed-piano strike when the light returns."
+    }
+  ]
+}
