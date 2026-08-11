@@ -48,7 +48,7 @@ from peft import LoraConfig
 from PIL import Image
 from safetensors.torch import load_file as load_safetensors_file
 
-MODEL_ID = "/mnt/aigc/fanxiangyu/repos/video_gen/Bagel/Minimax-H3"
+MODEL_ID = "MiniMaxAI/MiniMax-H3"
 FPS = 24
 HEIGHT = 544
 WIDTH = 960
@@ -210,7 +210,7 @@ def initialize_fsdp2(context: DistributedContext):
         from torch.distributed.fsdp import fully_shard  # noqa: F401
     except ImportError as error:
         raise RuntimeError(
-            "This PyTorch build does not provide FSDP2. Install PyTorch 2.4 or newer."
+            "This PyTorch build does not provide FSDP2. Install PyTorch 2.6 or newer."
         ) from error
     return init_device_mesh(
         "cuda", (context.world_size,), mesh_dim_names=("fsdp",)

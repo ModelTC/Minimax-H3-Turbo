@@ -4,10 +4,40 @@ Minimax-H3-Turbo provides batch MiniMax-H3 inference and NFE/LoRA comparisons.
 
 ## Model specs
 
-| Model | Tasks | Training resolution | Training shifts (video / audio) | Distillation steps (NFE) | Recommended inference steps (NFE) |
-| --- | --- | --- | ---: | ---: | ---: |
-| [FL2VA Turbo 4-step v0.1](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v0.1.safetensors) | FL2VA / T2VA | 544p (mixed aspect ratio) | 12 / 3 | 4 | 4 |
-| [FL2VA Turbo 8-step v1.0 (Diffusers BF16)](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors)<br>[FL2VA Turbo 8-step v1.0 (ComfyUI BF16)](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors) | FL2VA / T2VA | 544p (mixed aspect ratio) | 12 / 3 | 8 | 8 |
+<table>
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th align="center">Tasks</th>
+      <th align="center">Training<br>resolution</th>
+      <th align="center">Training shifts<br>(video / audio)</th>
+      <th align="center">Distillation<br>steps (NFE)</th>
+      <th align="center">Recommended inference<br>steps (NFE)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v0.1.safetensors"><strong>FL2VA Turbo 4-step v0.1</strong></a></td>
+      <td align="center">FL2VA / T2VA</td>
+      <td align="center">544p<br><sub>mixed aspect ratio</sub></td>
+      <td align="center">12 / 3</td>
+      <td align="center">4</td>
+      <td align="center">4</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>FL2VA Turbo 8-step v1.0</strong><br>
+        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors">Diffusers BF16</a> ·
+        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors">ComfyUI BF16</a>
+      </td>
+      <td align="center">FL2VA / T2VA</td>
+      <td align="center">544p<br><sub>mixed aspect ratio</sub></td>
+      <td align="center">12 / 3</td>
+      <td align="center">8</td>
+      <td align="center">8</td>
+    </tr>
+  </tbody>
+</table>
 
 For `NFE = N`, define the N transformer evaluation points on the unshifted grid as
 `q_i = (N - i) / N`, where `i = 0, 1, ..., N - 1`.
@@ -99,3 +129,15 @@ To fuse the LoRA weights into the model before inference, add the following opti
 
 1. Improve the visual details and overall quality of FL2V Turbo.
 2. Develop distillation based on Ref2V.
+
+## Results preview
+
+<p align="center">
+  <a href="https://cdn-uploads.huggingface.co/production/uploads/657fba44bc9bceccf935ebfc/UqO5XakD_TZYMdP8CRkYn.mp4">
+    <img src="assets/minimax_h3_turbo_preview.svg" alt="MiniMax H3 Turbo result preview" width="720">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://cdn-uploads.huggingface.co/production/uploads/657fba44bc9bceccf935ebfc/UqO5XakD_TZYMdP8CRkYn.mp4">Watch the MP4 with audio</a>
+</p>
