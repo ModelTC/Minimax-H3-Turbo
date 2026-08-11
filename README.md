@@ -4,12 +4,56 @@ Minimax-H3-Turbo provides batch MiniMax-H3 inference and NFE/LoRA comparisons.
 
 ## Model specs
 
-
-| Model                                                                                                                                                                                                                                                                                                  | Tasks        | Training resolution     | Training shifts (video / audio) | Distillation steps (NFE) | Recommended inference steps (NFE) |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ | ----------------------- | ------------------------------- | ------------------------ | --------------------------------- |
-| **FL2VA Turbo 4-step v0.1** [Diffusers](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v0.1.safetensors) · [ComfyUI](https://huggingface.co/Kijai/MiniMax-H3_comfy/blob/main/loras/minimax_h3_fl2v_lightx2v_turbo_4step_v0.1_comfy.safetensors)                | FL2VA / T2VA | 544p mixed aspect ratio | 12 / 3                          | 4                        | 4                                 |
-| **FL2VA Turbo 8-step v1.0** [Diffusers](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors) · [ComfyUI](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors)                | FL2VA / T2VA | 544p mixed aspect ratio | 12 / 3                          | 8                        | 8 / 4                             |
-| **FL2VA Turbo 4-step v1.0 768p** [Diffusers](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v1.0_768p_bf16.safetensors) · [ComfyUI](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors) | FL2VA / T2VA | 768p 1344x768           | 6 / 3                           | 4                        | 4                                 |
+<table>
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th align="center">Tasks</th>
+      <th align="center">Training<br>resolution</th>
+      <th align="center">Training shifts<br>(video / audio)</th>
+      <th align="center">Distillation<br>steps (NFE)</th>
+      <th align="center">Recommended inference<br>steps (NFE)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>FL2VA Turbo 4-step v0.1</strong><br>
+        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v0.1.safetensors">Diffusers</a> ·
+        <a href="https://huggingface.co/Kijai/MiniMax-H3_comfy/blob/main/loras/minimax_h3_fl2v_lightx2v_turbo_4step_v0.1_comfy.safetensors">ComfyUI</a>
+      </td>
+      <td align="center">FL2VA / T2VA</td>
+      <td align="center">544p<br><sub>mixed aspect ratio</sub></td>
+      <td align="center">12 / 3</td>
+      <td align="center">4</td>
+      <td align="center">4</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>FL2VA Turbo 8-step v1.0</strong><br>
+        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors">Diffusers</a> ·
+        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors">ComfyUI</a>
+      </td>
+      <td align="center">FL2VA / T2VA</td>
+      <td align="center">544p<br><sub>mixed aspect ratio</sub></td>
+      <td align="center">12 / 3</td>
+      <td align="center">8</td>
+      <td align="center">8 / 4</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>FL2VA Turbo 4-step v1.0 768p</strong><br>
+        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v1.0_768p_bf16.safetensors">Diffusers</a> ·
+        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors">ComfyUI</a>
+      </td>
+      <td align="center">FL2VA / T2VA</td>
+      <td align="center">768p<br><sub>1344x768</sub></td>
+      <td align="center">6 / 3</td>
+      <td align="center">4</td>
+      <td align="center">4</td>
+    </tr>
+  </tbody>
+</table>
 
 
 For `NFE = N`, define the N transformer evaluation points on the unshifted grid as
@@ -30,7 +74,6 @@ hf download lightx2v/Minimax-h3-Turbo \
   minimax_h3_fl2v_turbo_4step_v0.1.safetensors \
   minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors \
   minimax_h3_fl2v_turbo_4step_v1.0_768p_bf16.safetensors \
-  minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors \
   --local-dir .
 ```
 
