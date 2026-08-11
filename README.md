@@ -40,8 +40,21 @@ Minimax-H3-Turbo provides batch MiniMax-H3 inference and NFE/LoRA comparisons.
       <td align="center">8</td>
       <td align="center">8 / 4</td>
     </tr>
+    <tr>
+      <td>
+        <strong>FL2VA Turbo 4-step v1.0 768p</strong><br>
+        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v1.0_768p_bf16.safetensors">Diffusers</a> ·
+        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors">ComfyUI</a>
+      </td>
+      <td align="center">FL2VA / T2VA</td>
+      <td align="center">768p<br><sub>1344x768</sub></td>
+      <td align="center">6 / 3</td>
+      <td align="center">4</td>
+      <td align="center">4</td>
+    </tr>
   </tbody>
 </table>
+
 
 For `NFE = N`, define the N transformer evaluation points on the unshifted grid as
 `q_i = (N - i) / N`, where `i = 0, 1, ..., N - 1`.
@@ -53,15 +66,18 @@ grid is `q = [1, 0.75, 0.5, 0.25]`, giving video sigma
 
 ## Download the LoRA checkpoints
 
-Download the [4-step v0.1](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v0.1.safetensors) and [8-step v1.0](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors) checkpoints to the repository root:
+Download the [4-step v0.1](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v0.1.safetensors), [8-step v1.0](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors), and [4-step v1.0 768p](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v1.0_768p_bf16.safetensors) checkpoints to the repository root:
 
 ```bash
 python -m pip install -U huggingface_hub
 hf download lightx2v/Minimax-h3-Turbo \
   minimax_h3_fl2v_turbo_4step_v0.1.safetensors \
   minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors \
+  minimax_h3_fl2v_turbo_4step_v1.0_768p_bf16.safetensors \
   --local-dir .
 ```
+
+
 
 ## Environment setup
 
@@ -114,6 +130,20 @@ python inference_minimax_h3.py \
   --output-dir outputs/lora_8nfe
 ```
 
+LoRA, 4 NFE, 768p(v1.0):
+
+```bash
+python inference_minimax_h3.py \
+  --jobs-json prompts_t2va_test_24.json \
+  --lora-path minimax_h3_fl2v_turbo_4step_v1.0_768p_bf16.safetensors \
+  --inference-steps 4 \
+  --video-shift 6 \
+  --lora-alpha 128 \
+  --height 768 \
+  --width 1344 \
+  --output-dir outputs/lora_4nfe_768p
+```
+
 Base model, 50 NFE:
 
 ```bash
@@ -128,6 +158,8 @@ To fuse the LoRA weights into the model before inference, add the following opti
 ```bash
 --fuse-lora
 ```
+
+
 
 ## Roadmap
 
