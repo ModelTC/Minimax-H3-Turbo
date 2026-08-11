@@ -133,15 +133,3 @@ To fuse the LoRA weights into the model before inference, add the following opti
 
 1. Improve the visual details and overall quality of FL2V Turbo.
 2. Develop distillation based on Ref2V.
-
-## Results preview
-
-<p align="center">
-  <a href="https://cdn-uploads.huggingface.co/production/uploads/657fba44bc9bceccf935ebfc/UqO5XakD_TZYMdP8CRkYn.mp4">
-    <img src="assets/minimax_h3_turbo_preview.svg" alt="MiniMax H3 Turbo result preview" width="720">
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://cdn-uploads.huggingface.co/production/uploads/657fba44bc9bceccf935ebfc/UqO5XakD_TZYMdP8CRkYn.mp4">Watch the MP4 with audio</a>
-</p>
