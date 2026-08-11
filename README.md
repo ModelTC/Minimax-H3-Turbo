@@ -17,7 +17,11 @@ Minimax-H3-Turbo provides batch MiniMax-H3 inference and NFE/LoRA comparisons.
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v0.1.safetensors"><strong>FL2VA Turbo 4-step v0.1</strong></a></td>
+      <td>
+        <strong>FL2VA Turbo 4-step v0.1</strong><br>
+        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v0.1.safetensors">Diffusers</a> ·
+        <a href="https://huggingface.co/Kijai/MiniMax-H3_comfy/blob/main/loras/minimax_h3_fl2v_lightx2v_turbo_4step_v0.1_comfy.safetensors">ComfyUI</a>
+      </td>
       <td align="center">FL2VA / T2VA</td>
       <td align="center">544p<br><sub>mixed aspect ratio</sub></td>
       <td align="center">12 / 3</td>
@@ -27,14 +31,14 @@ Minimax-H3-Turbo provides batch MiniMax-H3 inference and NFE/LoRA comparisons.
     <tr>
       <td>
         <strong>FL2VA Turbo 8-step v1.0</strong><br>
-        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors">Diffusers BF16</a> ·
-        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors">ComfyUI BF16</a>
+        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors">Diffusers</a> ·
+        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors">ComfyUI</a>
       </td>
       <td align="center">FL2VA / T2VA</td>
       <td align="center">544p<br><sub>mixed aspect ratio</sub></td>
       <td align="center">12 / 3</td>
       <td align="center">8</td>
-      <td align="center">8</td>
+      <td align="center">8 / 4</td>
     </tr>
   </tbody>
 </table>
