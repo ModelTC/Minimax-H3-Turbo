@@ -769,6 +769,18 @@ def parse_args() -> argparse.Namespace:
         "--seed", type=int, default=42, help="Base random seed (default: 42)."
     )
     parser.add_argument(
+        "--height",
+        type=int,
+        default=HEIGHT,
+        help=f"Output video height in pixels (default: {HEIGHT}).",
+    )
+    parser.add_argument(
+        "--width",
+        type=int,
+        default=WIDTH,
+        help=f"Output video width in pixels (default: {WIDTH}).",
+    )
+    parser.add_argument(
         "--inference-steps",
         "--num-inference-steps",
         dest="inference_steps",
@@ -954,6 +966,10 @@ def main() -> None:
     context = distributed_context_from_env(args.fsdp2)
     if args.inference_steps < 1:
         raise ValueError("--inference-steps must be at least 1.")
+    if args.height <= 0 or args.height % 32 != 0:
+        raise ValueError("--height must be a positive multiple of 32.")
+    if args.width <= 0 or args.width % 32 != 0:
+        raise ValueError("--width must be a positive multiple of 32.")
     if not math.isfinite(args.video_shift) or args.video_shift <= 0:
         raise ValueError("--video-shift must be a finite positive number.")
     if not math.isfinite(args.audio_shift) or args.audio_shift <= 0:
@@ -1034,8 +1050,8 @@ def main() -> None:
             with torch.inference_mode():
                 result = pipe(
                     prompt=job.prompt,
-                    height=HEIGHT,
-                    width=WIDTH,
+                    height=args.height,
+                    width=args.width,
                     num_frames=NUM_FRAMES,
                     num_inference_steps=scheduler_grid_points,
                     generator=generator,
@@ -1049,7 +1065,7 @@ def main() -> None:
             )
             save_result_video(result, output_path, FPS)
             print(
-                f"[rank {context.rank}] Saved {WIDTH}x{HEIGHT}, "
+                f"[rank {context.rank}] Saved {args.width}x{args.height}, "
                 f"{NUM_FRAMES}-frame {job.mode} video with muxed audio to "
                 f"{output_path}",
                 flush=True,
