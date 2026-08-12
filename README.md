@@ -98,7 +98,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 \
 torchrun --standalone --nproc-per-node=8 \
   inference_minimax_h3.py \
   --fsdp2 \
-  --jobs-json prompts_t2va_test_24.json \
+  --jobs-json examples/prompts_t2va_test_24.json \
   --lora-path minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors \
   --inference-steps 8 \
   --output-dir outputs/lora_8nfe_fsdp2
@@ -114,7 +114,7 @@ LoRA, 4 NFE:
 
 ```bash
 python inference_minimax_h3.py \
-  --jobs-json prompts_t2va_test_24.json \
+  --jobs-json examples/prompts_t2va_test_24.json \
   --lora-path minimax_h3_fl2v_turbo_4step_v0.1.safetensors \
   --inference-steps 4 \
   --output-dir outputs/lora_4nfe
@@ -124,17 +124,27 @@ LoRA, 8 NFE (v1.0):
 
 ```bash
 python inference_minimax_h3.py \
-  --jobs-json prompts_t2va_test_24.json \
+  --jobs-json examples/prompts_t2va_test_24.json \
   --lora-path minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors \
   --inference-steps 8 \
   --output-dir outputs/lora_8nfe
+```
+
+I2VA, 8 NFE (v1.0):
+
+```bash
+python inference_minimax_h3.py \
+  --jobs-json examples/prompts_i2va_test_12.json \
+  --lora-path minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors \
+  --inference-steps 8 \
+  --output-dir outputs/i2va_lora_8nfe
 ```
 
 LoRA, 4 NFE, 768p(v1.0):
 
 ```bash
 python inference_minimax_h3.py \
-  --jobs-json prompts_t2va_test_24.json \
+  --jobs-json examples/prompts_t2va_test_24.json \
   --lora-path minimax_h3_fl2v_turbo_4step_v1.0_768p_bf16.safetensors \
   --inference-steps 4 \
   --video-shift 6 \
@@ -148,7 +158,7 @@ Base model, 50 NFE:
 
 ```bash
 python inference_minimax_h3.py \
-  --jobs-json prompts_t2va_test_24.json \
+  --jobs-json examples/prompts_t2va_test_24.json \
   --inference-steps 50 \
   --output-dir outputs/base_50nfe
 ```
