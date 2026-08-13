@@ -3,7 +3,7 @@
 Minimax-H3-Turbo provides MiniMax-H3 Turbo LoRA checkpoints, plus Diffusers
 batch inference and ComfyUI workflows.
 
-## Model specs
+## 1. Model specs
 
 <table>
   <thead>
@@ -122,13 +122,13 @@ policies through `--reference-resize-mode` and defaults to `match`. Passing
 (the fixed 2048-pixel short edge). For our distilled models, **we recommend
 selecting `match`** so inference uses the same resizing policy as training.
 
-## Diffusers setup and inference
+## 2. Diffusers setup and inference
 
 See [DIFFUSERS_SETUP_AND_INFERENCE.md](DIFFUSERS_SETUP_AND_INFERENCE.md) for
 environment setup, checkpoint downloads, test JSON files, and single- or
 multi-GPU inference commands.
 
-## ComfyUI inference
+## 3. ComfyUI inference
 
 See [COMFYUI_SETUP_AND_INFERENCE.md](COMFYUI_SETUP_AND_INFERENCE.md) for
 ComfyUI requirements, model installation, inputs, prompts, and run instructions.
@@ -153,11 +153,11 @@ or more reference images through the reference-input branch.
 For detailed workflow inputs and execution steps, see
 [COMFYUI_SETUP_AND_INFERENCE.md](COMFYUI_SETUP_AND_INFERENCE.md).
 
-## Roadmap
+## 4. Roadmap
 
 1. Improve the visual quality and consistency of Ref2VA and FL2VA Turbo.
 
-## Acknowledgements
+## 5. Acknowledgements
 
 Some Ref2VA test cases and reference assets are adapted from public showcases on
 the [Hailuo website](https://hailuoai.video/) and from the [MiniMax-H3 discussion
