@@ -84,11 +84,32 @@ grid is `q = [1, 0.75, 0.5, 0.25]`, giving video sigma
 The three reference-image resizing policies used by our workflows are based on
 the `ref_image_size` implementation described in [ComfyUI's MiniMax H3 R2V reference-image sizing guidance](https://docs.comfy.org/tutorials/video/minimax/minimax-h3#prompting-tips-3):
 
-| Setting | Behavior | Scale factor (before rounding to the 32-pixel grid) |
-|---|---|---|
-| `match` | Scale the reference to match the generation pixel area. This is the ComfyUI speed-oriented default. | `min(1, sqrt(target_area / ref_area))` |
-| `max` | Preserve the reference aspect ratio and scale it down only when its short edge exceeds 2048 pixels. | `min(1, 2048 / ref_short_edge)` |
-| `diffusers` | Preserve the reference aspect ratio and force its short edge to 2048 pixels. | `2048 / ref_short_edge` |
+<table>
+  <thead>
+    <tr>
+      <th>Mode</th>
+      <th>Behavior</th>
+      <th align="center">Scale factor<br><sub>before 32-pixel rounding</sub></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>match</code></td>
+      <td>Matches the reference pixel area to the target canvas while preserving the reference aspect ratio. It never upscales a smaller reference.</td>
+      <td align="center"><code>min(1, sqrt(target_area / ref_area))</code></td>
+    </tr>
+    <tr>
+      <td><code>max</code></td>
+      <td>Preserves the reference aspect ratio and only scales down references whose short edge exceeds 2048 pixels.</td>
+      <td align="center"><code>min(1, 2048 / ref_short_edge)</code></td>
+    </tr>
+    <tr>
+      <td><code>diffusers</code></td>
+      <td>Preserves the reference aspect ratio and forces the short edge to 2048 pixels, matching the original Diffusers behavior.</td>
+      <td align="center"><code>2048 / ref_short_edge</code></td>
+    </tr>
+  </tbody>
+</table>
 
 All three policies keep the reference aspect ratio, use the H3 resolution grid
 (dimensions rounded to multiples of 32), and avoid cropping the reference
@@ -98,8 +119,8 @@ pixel budget follows the target training resolution.
 The Ref2VA inference entry point in this repository exposes the same three
 policies through `--reference-resize-mode` and defaults to `match`. Passing
 `--reference-resize-mode diffusers` restores the original Diffusers behavior
-(the fixed 2048-pixel short edge). For our distilled models, we recommend
-selecting `match` so inference uses the same resizing policy as training.
+(the fixed 2048-pixel short edge). For our distilled models, **we recommend
+selecting `match`** so inference uses the same resizing policy as training.
 
 ## Diffusers inference
 
