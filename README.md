@@ -351,8 +351,7 @@ it. Output is written under `video/MiniMax_H3`.
 
 ## Roadmap
 
-1. Improve the visual details and overall quality of FL2VA Turbo.
-2. Develop and release distilled Ref2VA checkpoints.
+1. Improve the visual quality and consistency of Ref2VA and FL2VA Turbo.
 
 ## Acknowledgements
 
