@@ -1,6 +1,7 @@
 # [Minimax-H3-Turbo](https://github.com/ModelTC/Minimax-H3-Turbo)
 
-Minimax-H3-Turbo provides batch MiniMax-H3 inference and NFE/LoRA comparisons.
+Minimax-H3-Turbo provides MiniMax-H3 Turbo LoRA checkpoints, plus Diffusers
+batch inference and ComfyUI workflows.
 
 ## Model specs
 
@@ -55,7 +56,6 @@ Minimax-H3-Turbo provides batch MiniMax-H3 inference and NFE/LoRA comparisons.
   </tbody>
 </table>
 
-
 For `NFE = N`, define the N transformer evaluation points on the unshifted grid as
 `q_i = (N - i) / N`, where `i = 0, 1, ..., N - 1`.
 
@@ -64,9 +64,24 @@ grid is `q = [1, 0.75, 0.5, 0.25]`, giving video sigma
 `[1, 0.9730, 0.9231, 0.8000] -> 0` and audio sigma
 `[1, 0.9000, 0.7500, 0.5000] -> 0`; each list therefore uses exactly four NFEs.
 
-## Download the LoRA checkpoints
+## Roadmap
 
-Download the [4-step v0.1](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v0.1.safetensors), [8-step v1.0](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors), and [4-step v1.0 768p](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v1.0_768p_bf16.safetensors) checkpoints to the repository root:
+1. Improve the visual details and overall quality of FL2V Turbo.
+2. Develop distillation based on Ref2V.
+
+## Diffusers inference
+
+### Environment
+
+Follow the [Diffusers MiniMax-H3 documentation](https://huggingface.co/docs/diffusers/main/en/api/pipelines/minimax_h3)
+to prepare a compatible Diffusers version and Python environment. The inference
+script uses `MiniMaxAI/MiniMax-H3` as the base model by default.
+
+### Download LoRA checkpoints
+
+Download the Diffusers checkpoints from
+[lightx2v/Minimax-h3-Turbo](https://huggingface.co/lightx2v/Minimax-h3-Turbo)
+to the repository root:
 
 ```bash
 python -m pip install -U huggingface_hub
@@ -77,17 +92,14 @@ hf download lightx2v/Minimax-h3-Turbo \
   --local-dir .
 ```
 
+Jobs live in `examples/`. T2VA: [`examples/prompts_t2va_test_24.json`](examples/prompts_t2va_test_24.json).
+I2VA: [`examples/prompts_i2va_test_12.json`](examples/prompts_i2va_test_12.json).
+Pass `--jobs-json` and `--lora-path` as in the commands below; the script fills
+in resolution, duration, and prompt fields from the JSON.
 
+### Run
 
-## Environment setup
-
-Follow the [Diffusers MiniMax-H3 documentation](https://huggingface.co/docs/diffusers/main/en/api/pipelines/minimax_h3) to prepare a compatible Diffusers version and Python environment.
-
-## Run inference
-
-The inference code uses `MiniMaxAI/MiniMax-H3` as the base model by default.
-
-### Multi-GPU inference with FSDP2
+#### Multi-GPU inference with FSDP2
 
 FSDP2 shards the text encoder and the active transformer across GPUs, so CPU
 offload is disabled. Launch one process per GPU with `torchrun` (PyTorch >= 2.6
@@ -108,7 +120,7 @@ To run the base model with FSDP2, omit `--lora-path`. FSDP2 shards only the text
 encoder and the active transformer; the remaining pipeline components are
 replicated on every rank.
 
-### Single-GPU inference
+#### Single-GPU inference
 
 LoRA, 4 NFE:
 
@@ -140,7 +152,7 @@ python inference_minimax_h3.py \
   --output-dir outputs/i2va_lora_8nfe
 ```
 
-LoRA, 4 NFE, 768p(v1.0):
+LoRA, 4 NFE, 768p (v1.0):
 
 ```bash
 python inference_minimax_h3.py \
@@ -163,15 +175,93 @@ python inference_minimax_h3.py \
   --output-dir outputs/base_50nfe
 ```
 
-To fuse the LoRA weights into the model before inference, add the following option to the LoRA command:
+To fuse the LoRA weights into the model before inference, add `--fuse-lora`.
+
+## ComfyUI inference
+
+### Environment
+
+**ComfyUI 0.31.0 or newer is required.** The example graphs use ComfyUI core
+nodes only, including the built-in MiniMax-H3 subgraph
+(`MiniMaxH3ImageToVideo`).
+
+### Required models
+
+Download the base MiniMax-H3 components from
+[Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3/tree/main)
+and place them in the corresponding ComfyUI model directories.
+
+Download the ComfyUI LoRAs from
+[lightx2v/Minimax-h3-Turbo](https://huggingface.co/lightx2v/Minimax-h3-Turbo)
+into `ComfyUI/models/loras/`:
 
 ```bash
---fuse-lora
+hf download lightx2v/Minimax-h3-Turbo \
+  minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors \
+  minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors \
+  --local-dir ComfyUI/models/loras
 ```
 
+```text
+ComfyUI/
+└── models/
+    └── loras/
+        ├── minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors
+        └── minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors
+```
 
+### Example workflows
 
-## Roadmap
+Ready-to-import graphs are in [example_workflows](example_workflows/). Defaults
+match **FL2VA Turbo 8-step v1.0**.
 
-1. Improve the visual details and overall quality of FL2V Turbo.
-2. Develop distillation based on Ref2V.
+| Workflow | Task | Default resolution |
+|---|---|---|
+| [video_minimax_h3_t2v_lightx2v_turbo.json](example_workflows/video_minimax_h3_t2v_lightx2v_turbo.json) | T2VA (text-to-video + audio) | 960×544 (`16:9`, `0.5` MP) |
+| [video_minimax_h3_i2v_lightx2v_turbo.json](example_workflows/video_minimax_h3_i2v_lightx2v_turbo.json) | I2VA / FL2VA (image-to-video + audio) | 864×480 (`16:9`, `0.4` MP) |
+
+Both graphs wrap the same subgraph. T2VA leaves `first_frame` / `last_frame`
+unconnected; I2VA connects a `LoadImage` to `first_frame`. `last_frame` is
+optional for first/last-frame interpolation.
+
+### Inputs
+
+On the subgraph, set `lora_name`, `steps`, `shift_video`, and `shift_audio`
+together to match the model table. Sampler defaults to `euler`.
+
+**Resolution.** Width and height must be multiples of 32. Change the aspect
+ratio or megapixel value on **Resolution Selector** when another size is needed.
+The I2VA graph also includes an unused **Use Image Size** group
+(`ImageScaleToTotalPixels` → `GetImageSize`); wire those outputs to the
+subgraph `width` / `height` if you want the video canvas to follow the input
+image instead of the selector.
+
+**Duration.** Defaults to `5` seconds. MiniMax-H3 runs at 24 FPS and the frame
+count must be `17 * n + 5`, so a 5-second request is snapped to 124 frames
+(about 5.17 seconds).
+
+**Prompts.** Use three sections:
+
+```text
+integrated_multimodal_description: [Shot 1] Describe the visual style, subject, action, camera, lighting, and dialogue.
+
+overall_soundscape: Describe dialogue, ambient sound, and synchronized sound effects.
+
+non_diegetic_music: Describe the background score, or use N/A for no score.
+```
+
+Dialogue can be written as `<d>[English] Dialogue text.</d>`.
+
+For I2VA / FL2VA, keep first-frame identity with `<Picture 1>` (and
+`<Picture 2>` if `last_frame` is connected):
+
+```text
+integrated_multimodal_description: For the target video, at 0.00 seconds into the target video, <Picture 1> (from [Shot 1]) is fully referenced.
+
+[Shot 1] Preserve the subject, clothing, and scene from <Picture 1>, then describe the motion.
+```
+
+### Run
+
+Drag a workflow JSON onto the ComfyUI canvas, set the inputs above, and queue
+it. Output is written under `video/MiniMax_H3`.
