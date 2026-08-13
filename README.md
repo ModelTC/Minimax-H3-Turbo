@@ -87,24 +87,24 @@ the `ref_image_size` implementation described in [ComfyUI's MiniMax H3 R2V refer
 <table>
   <thead>
     <tr>
-      <th>Mode</th>
+      <th align="center">Mode</th>
       <th>Behavior</th>
       <th align="center">Scale factor<br><sub>before 32-pixel rounding</sub></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code>match</code></td>
+      <td align="center"><code>match</code></td>
       <td>Matches the reference pixel area to the target canvas while preserving the reference aspect ratio. It never upscales a smaller reference.</td>
       <td align="center"><code>min(1, sqrt(target_area / ref_area))</code></td>
     </tr>
     <tr>
-      <td><code>max</code></td>
+      <td align="center"><code>max</code></td>
       <td>Preserves the reference aspect ratio and only scales down references whose short edge exceeds 2048 pixels.</td>
       <td align="center"><code>min(1, 2048 / ref_short_edge)</code></td>
     </tr>
     <tr>
-      <td><code>diffusers</code></td>
+      <td align="center"><code>diffusers</code></td>
       <td>Preserves the reference aspect ratio and forces the short edge to 2048 pixels, matching the original Diffusers behavior.</td>
       <td align="center"><code>2048 / ref_short_edge</code></td>
     </tr>
