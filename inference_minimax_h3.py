@@ -16,14 +16,21 @@
 
 MiniMax-H3 runs at 24 FPS and its video VAE accepts frame counts of the form
 ``17 * n + 5``. Therefore the shortest valid clip is 124 frames (about 5.17
-seconds). The closest valid 16:9 540p canvas is 960x544 because both dimensions
-must be divisible by 32.
+seconds). Output dimensions are resolved from megapixels and aspect ratio,
+then rounded to multiples of 32.
+
+Each JSON example may set ``duration`` (seconds), ``megapixels``, and
+``aspect_ratio``. Width and height are resolved from those fields.
+The duration is converted to a valid frame count with
+``max(5, round(duration * 24)) + (5 - (max(5, round(duration * 24)) % 17)) % 17``.
+Command-line values override the corresponding per-example settings.
 
 ``--jobs-json`` contains an ``examples`` array. Every example supplies ``task``
-and the three official prompt fields. An absent/empty ``images`` list is T2VA,
-one image is I2VA, and two images are FL2VA. Ref2VA instead supplies an ordered
-``references`` list of image, video, and/or audio media. Relative media paths
-are resolved from the JSON file.
+and the complete model input in ``prompt``. An absent/empty ``images`` list is
+T2VA, one image is I2VA, and two images are FL2VA. Ref2VA instead supplies an
+ordered ``references`` list of image, video, and/or audio media. Relative media
+paths are resolved from the JSON file. Legacy split prompt fields remain
+supported for compatibility.
 """
 
 import argparse
@@ -47,12 +54,24 @@ from diffusers.utils.export_utils import encode_video
 from peft import LoraConfig
 from PIL import Image
 from safetensors.torch import load_file as load_safetensors_file
+from resolution_util import (
+    SUPPORTED_ASPECT_RATIOS,
+    resolve_output_size,
+    validate_aspect_ratio,
+    validate_megapixels,
+)
+from minimax_h3_ref2va_pipeline import (
+    DEFAULT_REFERENCE_RESIZE_MODE,
+    REFERENCE_RESIZE_MODES,
+    load_minimax_h3_ref2va_pipeline,
+)
 
 MODEL_ID = "MiniMaxAI/MiniMax-H3"
 FPS = 24
-HEIGHT = 544
-WIDTH = 960
+DEFAULT_MEGAPIXELS = 0.5
+DEFAULT_ASPECT_RATIO = "16:9"
 NUM_FRAMES = 124
+DEFAULT_DURATION = 5.0
 DEFAULT_INFERENCE_STEPS = 4
 DEFAULT_VIDEO_SHIFT = 12.0
 DEFAULT_AUDIO_SHIFT = 3.0
@@ -69,6 +88,14 @@ LORA_A_SUFFIX = ".lora_A.default.weight"
 LORA_B_SUFFIX = ".lora_B.default.weight"
 CORE_PROMPT_FIELDS = (
     "integrated_multimodal_description",
+    "overall_soundscape",
+    "non_diegetic_music",
+)
+REF_PROMPT_FIELDS = (
+    "subject_definitions",
+    "summary",
+    "retention_analysis",
+    "detailed_description",
     "overall_soundscape",
     "non_diegetic_music",
 )
@@ -97,8 +124,16 @@ class ReferenceSpec:
 class GenerationJob:
     task: str
     prompt: str
+    duration: float = DEFAULT_DURATION
+    megapixels: float = DEFAULT_MEGAPIXELS
+    aspect_ratio: str = DEFAULT_ASPECT_RATIO
     image_paths: tuple[Path, ...] = ()
     reference_specs: tuple[ReferenceSpec, ...] = ()
+
+    @property
+    def num_frames(self) -> int:
+        frame_count = max(5, round(self.duration * FPS))
+        return frame_count + (5 - (frame_count % 17)) % 17
 
     @property
     def mode(self) -> str:
@@ -429,9 +464,20 @@ def _parse_references(
     return tuple(references)
 
 
-def _build_prompt(example: Mapping, example_index: int) -> str:
+def _build_prompt(example: Mapping, example_index: int, task: str) -> str:
+    prompt = example.get("prompt")
+    if prompt is not None:
+        if not isinstance(prompt, str) or not prompt.strip():
+            raise ValueError(
+                f"Example {example_index} field 'prompt' must be a non-empty string."
+            )
+        return prompt.strip()
+
+    # Compatibility path for JSON files created before complete prompts were
+    # stored verbatim. New files should use the single `prompt` field above.
     sections = []
-    for field in CORE_PROMPT_FIELDS:
+    prompt_fields = REF_PROMPT_FIELDS if task == "ref2va" else CORE_PROMPT_FIELDS
+    for field in prompt_fields:
         value = example.get(field)
         if not isinstance(value, str) or not value.strip():
             raise ValueError(
@@ -439,6 +485,33 @@ def _build_prompt(example: Mapping, example_index: int) -> str:
             )
         sections.append(f"{field}: {value.strip()}")
     return "\n\n".join(sections)
+
+
+def _parse_generation_settings(
+    example: Mapping, example_index: int
+) -> tuple[float, float, str]:
+    missing = [
+        field for field in ("duration", "megapixels", "aspect_ratio") if field not in example
+    ]
+    if missing:
+        raise ValueError(
+            f"Example {example_index} must define JSON generation settings: "
+            f"{', '.join(missing)}."
+        )
+    raw_duration = example["duration"]
+    raw_megapixels = example["megapixels"]
+    raw_aspect_ratio = example["aspect_ratio"]
+    if isinstance(raw_duration, bool) or not isinstance(raw_duration, (int, float)):
+        raise TypeError(f"Example {example_index} duration must be a number of seconds.")
+    duration = float(raw_duration)
+    if not math.isfinite(duration) or duration <= 0:
+        raise ValueError(f"Example {example_index} duration must be finite and positive.")
+    try:
+        megapixels = validate_megapixels(raw_megapixels)
+        aspect_ratio = validate_aspect_ratio(raw_aspect_ratio)
+    except (TypeError, ValueError) as error:
+        raise type(error)(f"Example {example_index}: {error}") from error
+    return duration, megapixels, aspect_ratio
 
 
 def build_jobs(jobs_json: Path) -> list[GenerationJob]:
@@ -472,6 +545,7 @@ def build_jobs(jobs_json: Path) -> list[GenerationJob]:
                 "t2va, i2va, fl2va, ref2va."
             )
         task = TASK_ALIASES[raw_task.lower()]
+        duration, megapixels, aspect_ratio = _parse_generation_settings(example, example_index)
         if task == "ref2va":
             if "image" in example or "images" in example:
                 raise ValueError(
@@ -502,7 +576,10 @@ def build_jobs(jobs_json: Path) -> list[GenerationJob]:
         jobs.append(
             GenerationJob(
                 task=task,
-                prompt=_build_prompt(example, example_index),
+                prompt=_build_prompt(example, example_index, task),
+                duration=duration,
+                megapixels=megapixels,
+                aspect_ratio=aspect_ratio,
                 image_paths=image_paths,
                 reference_specs=reference_specs,
             )
@@ -769,16 +846,23 @@ def parse_args() -> argparse.Namespace:
         "--seed", type=int, default=42, help="Base random seed (default: 42)."
     )
     parser.add_argument(
-        "--height",
-        type=int,
-        default=HEIGHT,
-        help=f"Output video height in pixels (default: {HEIGHT}).",
+        "--megapixels",
+        type=float,
+        default=None,
+        help="Override per-example JSON megapixel target.",
     )
     parser.add_argument(
-        "--width",
+        "--aspect-ratio",
+        choices=SUPPORTED_ASPECT_RATIOS,
+        default=None,
+        help="Override per-example JSON aspect ratio.",
+    )
+    parser.add_argument(
+        "--num-frames",
+        "--frames",
         type=int,
-        default=WIDTH,
-        help=f"Output video width in pixels (default: {WIDTH}).",
+        default=None,
+        help="Override frames computed from each JSON duration.",
     )
     parser.add_argument(
         "--inference-steps",
@@ -806,6 +890,16 @@ def parse_args() -> argparse.Namespace:
         type=float,
         default=DEFAULT_AUDIO_SHIFT,
         help="Sigma schedule shift for audio latents (default: 3.0).",
+    )
+    parser.add_argument(
+        "--reference-resize-mode",
+        choices=REFERENCE_RESIZE_MODES,
+        default=DEFAULT_REFERENCE_RESIZE_MODE,
+        help=(
+            "Ref2VA reference-image resize policy: match follows the target pixel area, "
+            "max caps the short edge at 2048, and diffusers forces a 2048-pixel short edge "
+            f"(default: {DEFAULT_REFERENCE_RESIZE_MODE})."
+        ),
     )
     parser.add_argument(
         "--device",
@@ -868,16 +962,24 @@ def load_pipeline(
     dtype = torch.bfloat16
 
     if args.fsdp2 or args.no_cpu_offload:
-        pipe = ModularPipeline.from_pretrained(args.model_id)
+        if workflow == "ref2va":
+            pipe = load_minimax_h3_ref2va_pipeline(args.model_id)
+        else:
+            pipe = ModularPipeline.from_pretrained(args.model_id)
     else:
         manager = ComponentsManager()
         manager.enable_auto_cpu_offload(
             device=args.device,
             memory_reserve_margin=args.memory_reserve_margin,
         )
-        pipe = ModularPipeline.from_pretrained(
-            args.model_id, components_manager=manager
-        )
+        if workflow == "ref2va":
+            pipe = load_minimax_h3_ref2va_pipeline(
+                args.model_id, components_manager=manager
+            )
+        else:
+            pipe = ModularPipeline.from_pretrained(
+                args.model_id, components_manager=manager
+            )
 
     # T2VA/I2VA/FL2VA use transformer; Ref2VA uses transformer_ref. Loading one
     # workflow keeps the inactive ~66 GB partition out of host and device memory.
@@ -966,10 +1068,10 @@ def main() -> None:
     context = distributed_context_from_env(args.fsdp2)
     if args.inference_steps < 1:
         raise ValueError("--inference-steps must be at least 1.")
-    if args.height <= 0 or args.height % 32 != 0:
-        raise ValueError("--height must be a positive multiple of 32.")
-    if args.width <= 0 or args.width % 32 != 0:
-        raise ValueError("--width must be a positive multiple of 32.")
+    if args.megapixels is not None:
+        validate_megapixels(args.megapixels)
+    if args.num_frames is not None and args.num_frames < 1:
+        raise ValueError("--num-frames must be positive.")
     if not math.isfinite(args.video_shift) or args.video_shift <= 0:
         raise ValueError("--video-shift must be a finite positive number.")
     if not math.isfinite(args.audio_shift) or args.audio_shift <= 0:
@@ -1001,6 +1103,10 @@ def main() -> None:
         index = assignment.global_index
         job = assignment.job
         image_summary = ", ".join(map(str, job.image_paths)) or "none"
+        output_megapixels = args.megapixels if args.megapixels is not None else job.megapixels
+        output_aspect_ratio = args.aspect_ratio if args.aspect_ratio is not None else job.aspect_ratio
+        output_width, output_height = resolve_output_size(output_megapixels, output_aspect_ratio)
+        output_frames = args.num_frames if args.num_frames is not None else job.num_frames
         reference_summary = (
             ", ".join(
                 f"{reference.kind}:{reference.path}"
@@ -1013,7 +1119,10 @@ def main() -> None:
             f"padding={assignment.is_padding} mode={job.mode} "
             f"seed={args.seed + index} "
             f"workflow={workflow} images={image_summary} "
-            f"references={reference_summary} prompt={job.prompt!r}",
+            f"references={reference_summary} duration={job.duration:.6g}s "
+            f"megapixels={output_megapixels:.6g} aspect_ratio={output_aspect_ratio} "
+            f"size={output_width}x{output_height} frames={output_frames} "
+            f"prompt={job.prompt!r}",
             flush=True,
         )
     if args.dry_run:
@@ -1036,12 +1145,17 @@ def main() -> None:
             index = assignment.global_index
             job = assignment.job
             seed = args.seed + index
+            output_megapixels = args.megapixels if args.megapixels is not None else job.megapixels
+            output_aspect_ratio = args.aspect_ratio if args.aspect_ratio is not None else job.aspect_ratio
+            output_width, output_height = resolve_output_size(output_megapixels, output_aspect_ratio)
+            output_frames = args.num_frames if args.num_frames is not None else job.num_frames
             generator = torch.Generator().manual_seed(seed)
             pipeline_kwargs = {}
             if job.task == "ref2va":
                 pipeline_kwargs["references"] = _load_references(
                     job.reference_specs
                 )
+                pipeline_kwargs["reference_resize_mode"] = args.reference_resize_mode
             elif len(job.image_paths) >= 1:
                 pipeline_kwargs["image"] = _load_rgb_image(job.image_paths[0])
             if len(job.image_paths) == 2:
@@ -1050,9 +1164,9 @@ def main() -> None:
             with torch.inference_mode():
                 result = pipe(
                     prompt=job.prompt,
-                    height=args.height,
-                    width=args.width,
-                    num_frames=NUM_FRAMES,
+                    height=output_height,
+                    width=output_width,
+                    num_frames=output_frames,
                     num_inference_steps=scheduler_grid_points,
                     generator=generator,
                     output_type="np",
@@ -1065,8 +1179,8 @@ def main() -> None:
             )
             save_result_video(result, output_path, FPS)
             print(
-                f"[rank {context.rank}] Saved {args.width}x{args.height}, "
-                f"{NUM_FRAMES}-frame {job.mode} video with muxed audio to "
+                f"[rank {context.rank}] Saved {output_width}x{output_height}, "
+                f"{output_frames}-frame ({job.duration:.6g}s) {job.mode} video with muxed audio to "
                 f"{output_path}",
                 flush=True,
             )

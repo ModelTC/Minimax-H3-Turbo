@@ -56,6 +56,8 @@ Minimax-H3-Turbo provides batch MiniMax-H3 inference and NFE/LoRA comparisons.
 </table>
 
 
+### Note on shift
+
 For `NFE = N`, define the N transformer evaluation points on the unshifted grid as
 `q_i = (N - i) / N`, where `i = 0, 1, ..., N - 1`.
 
@@ -63,6 +65,28 @@ For example, with `NFE = 4`, `video shift = 12`, and `audio shift = 3`, the shar
 grid is `q = [1, 0.75, 0.5, 0.25]`, giving video sigma
 `[1, 0.9730, 0.9231, 0.8000] -> 0` and audio sigma
 `[1, 0.9000, 0.7500, 0.5000] -> 0`; each list therefore uses exactly four NFEs.
+
+### Note on reference-image resizing
+
+The three reference-image resizing policies used by our workflows are based on
+the `ref_image_size` implementation described in [ComfyUI's MiniMax H3 R2V reference-image sizing guidance](https://docs.comfy.org/tutorials/video/minimax/minimax-h3#prompting-tips-3):
+
+| Setting | Behavior | Scale factor (before rounding to the 32-pixel grid) |
+|---|---|---|
+| `match` | Scale the reference to match the generation pixel area. This is the ComfyUI speed-oriented default. | `min(1, sqrt(target_area / ref_area))` |
+| `max` | Preserve the reference aspect ratio and scale it down only when its short edge exceeds 2048 pixels. | `min(1, 2048 / ref_short_edge)` |
+| `diffusers` | Preserve the reference aspect ratio and force its short edge to 2048 pixels. | `2048 / ref_short_edge` |
+
+All three policies keep the reference aspect ratio, use the H3 resolution grid
+(dimensions rounded to multiples of 32), and avoid cropping the reference
+content. In our distillation training, we use `match`, so the reference-image
+pixel budget follows the target training resolution.
+
+The Ref2VA inference entry point in this repository exposes the same three
+policies through `--reference-resize-mode` and defaults to `match`. Passing
+`--reference-resize-mode diffusers` restores the original Diffusers behavior
+(the fixed 2048-pixel short edge). For our distilled models, we recommend
+selecting `match` so inference uses the same resizing policy as training.
 
 ## Download the LoRA checkpoints
 
@@ -98,7 +122,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 \
 torchrun --standalone --nproc-per-node=8 \
   inference_minimax_h3.py \
   --fsdp2 \
-  --jobs-json examples/prompts_t2va_test_24.json \
+  --jobs-json examples/prompts_t2va_test.json \
   --lora-path minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors \
   --inference-steps 8 \
   --output-dir outputs/lora_8nfe_fsdp2
@@ -114,7 +138,7 @@ LoRA, 4 NFE:
 
 ```bash
 python inference_minimax_h3.py \
-  --jobs-json examples/prompts_t2va_test_24.json \
+  --jobs-json examples/prompts_t2va_test.json \
   --lora-path minimax_h3_fl2v_turbo_4step_v0.1.safetensors \
   --inference-steps 4 \
   --output-dir outputs/lora_4nfe
@@ -124,7 +148,7 @@ LoRA, 8 NFE (v1.0):
 
 ```bash
 python inference_minimax_h3.py \
-  --jobs-json examples/prompts_t2va_test_24.json \
+  --jobs-json examples/prompts_t2va_test.json \
   --lora-path minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors \
   --inference-steps 8 \
   --output-dir outputs/lora_8nfe
@@ -134,23 +158,43 @@ I2VA, 8 NFE (v1.0):
 
 ```bash
 python inference_minimax_h3.py \
-  --jobs-json examples/prompts_i2va_test_12.json \
+  --jobs-json examples/prompts_i2va_test.json \
   --lora-path minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors \
   --inference-steps 8 \
   --output-dir outputs/i2va_lora_8nfe
 ```
 
+Ref2VA base model, 50 NFE:
+
+```bash
+python inference_minimax_h3.py \
+  --jobs-json examples/prompts_ref2va_test.json \
+  --inference-steps 50 \
+  --output-dir outputs/ref2va_base_50nfe
+```
+
+The Ref2VA jobs JSON must contain only `ref2va` examples. The script selects
+`transformer_ref` automatically. Do not pass the FL2VA LoRA checkpoints above
+to this command unless the checkpoint was specifically trained for
+`transformer_ref`.
+
+Each test example specifies `duration`, `megapixels`, and `aspect_ratio`.
+The inference script resolves the final width and height from these fields
+using the shared [`resolution_util.py`](resolution_util.py) table and rounds
+both dimensions to multiples of 32. Supported aspect ratios are `21:9`,
+`16:9`, `4:3`, `1:1`, and their transposes.
+
 LoRA, 4 NFE, 768p(v1.0):
 
 ```bash
 python inference_minimax_h3.py \
-  --jobs-json examples/prompts_t2va_test_24.json \
+  --jobs-json examples/prompts_t2va_test.json \
   --lora-path minimax_h3_fl2v_turbo_4step_v1.0_768p_bf16.safetensors \
   --inference-steps 4 \
   --video-shift 6 \
   --lora-alpha 128 \
-  --height 768 \
-  --width 1344 \
+  --megapixels 1.0 \
+  --aspect-ratio 16:9 \
   --output-dir outputs/lora_4nfe_768p
 ```
 
@@ -158,7 +202,7 @@ Base model, 50 NFE:
 
 ```bash
 python inference_minimax_h3.py \
-  --jobs-json examples/prompts_t2va_test_24.json \
+  --jobs-json examples/prompts_t2va_test.json \
   --inference-steps 50 \
   --output-dir outputs/base_50nfe
 ```
@@ -175,3 +219,9 @@ To fuse the LoRA weights into the model before inference, add the following opti
 
 1. Improve the visual details and overall quality of FL2V Turbo.
 2. Develop distillation based on Ref2V.
+
+## Acknowledgements
+
+Some Ref2VA test cases and reference assets are adapted from public showcases on the [Hailuo website](https://hailuoai.video/) and from the [MiniMax-H3 discussion on Hugging Face](https://huggingface.co/lightx2v/Minimax-h3-Turbo/discussions/29). We thank the community contributors for sharing their test assets and prompts.
+
+Special thanks to the [MiniMax-AI/MiniMax-H3](https://github.com/MiniMax-AI/MiniMax-H3) project and the MiniMax team for open-sourcing the MiniMax-H3 model.
