@@ -1,0 +1,212 @@
+{
+  "examples": [
+    {
+      "task": "ref2va",
+      "references": [
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_1_1.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_1_2.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_1_3.jpg"
+        }
+      ],
+      "prompt": "subject_definitions:\n<Subject 1> is the long-haired East Asian female hunter in <Picture 1>, preserving her face, long wet black hair, black leather combat suit, tattered black cloak, black gloves, and single silver short blade.\n<Subject 2> is the East Asian female tech hunter in <Picture 2>, preserving her face, short black hair, white fox mask with red markings, black trench coat with cyan circuit lines, black boots, and single blue energy dagger.\n<Subject 3> is the rainy cyberpunk intersection in <Picture 3>, preserving its skyscrapers, giant blue-purple holographic billboard, neon signs, wet reflective asphalt, rain, and drifting fog.\n\nsummary:\n[reference generation] In one continuous 5.1667-second cinematic shot, <Subject 1> and <Subject 2> begin in a tense standoff inside <Subject 3>, charge across the wet street, exchange one fast blade combination, and end locked blade-to-blade in a burst of blue energy.\n\nretention_analysis:\n<Subject 1> (appears throughout): fully_preserved - retain the same face, long hair, black combat suit, cloak, body proportions, and one silver blade.\n<Subject 2> (appears throughout): fully_preserved - retain the same face, short hair, fox mask, cyan-lit trench coat, body proportions, and one energy dagger.\n<Subject 3> (appears throughout): fully_preserved - retain the wet intersection, billboard, neon palette, rain, fog, and reflective pavement.\n\ndetailed_description:\nPhotorealistic live-action cyberpunk action cinema, 16:9, high contrast purple-and-cyan night lighting, heavy rain, physically coherent motion, and stable identities. One continuous shot with no cuts, no duplicate people, no duplicate weapons, no costume changes, no gore, and no readable text.\n\n[Shot 1, 00:00.000-00:01.200] A low wide camera frames both fighters five meters apart on the rain-soaked street. <Subject 1> crouches on frame left with her silver blade held low; <Subject 2> stands on frame right with the blue energy dagger raised. Rain streaks through the holographic light and fog crosses the reflective road.\n\n[Shot 1, 00:01.200-00:03.600] Both women burst forward. The camera tracks sideways at waist height as <Subject 1>'s cloak opens behind her. She makes one upward diagonal slash; <Subject 2> sidesteps and blocks with the energy dagger. A compact blue-white spark and a ring of displaced droplets mark the impact. <Subject 2> answers with one horizontal counter, which <Subject 1> deflects with the flat of her blade.\n\n[Shot 1, 00:03.600-00:05.166] They rotate once around their joined weapons and stop in a close blade lock, faces and costumes still distinct. Cyan electricity crawls briefly across the crossed blades while rain runs from the fox mask and black cloak. The camera settles into a medium two-shot as the billboard flickers behind them and both hold the unresolved confrontation.\n\noverall_soundscape:\nHeavy rain, wet footfalls, two sharp blade impacts, controlled fabric movement, electrical crackle, distant traffic, and a low thunder roll. No dialogue.\n\nnon_diegetic_music:\nA dark electronic pulse rises through the charge and stops on the final blade lock.\n",
+      "duration": 5.1666666667,
+      "aspect_ratio": "16:9",
+      "megapixels": 0.5
+    },
+    {
+      "task": "ref2va",
+      "references": [
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_2_1.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_2_2.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_2_3.jpg"
+        }
+      ],
+      "prompt": "subject_definitions:\n<Subject 1> is the fictional Victorian detective in <Picture 3>, preserving his angular clean-shaven face, combed-back dark hair, long dark overcoat, brown waistcoat, cream cravat, watch chain, and briar pipe.\n<Subject 2> is the fictional Victorian doctor in <Picture 2>, preserving his sturdy build, cropped brown hair, heavy moustache, brown tweed suit, dark tie, and wooden cane.\n<Subject 3> is the Baker Street study in <Picture 1>, preserving the wood paneling, lit fireplace, bookshelves, rain-streaked windows, leather armchair, desk, chandelier, rug, and warm-firelight-versus-cool-window-light composition.\n\nsummary:\n[reference generation] In one continuous 5.1667-second locked-off Victorian dialogue shot, <Subject 2> asks whether <Subject 1> could have become a criminal; <Subject 1> answers with dry confidence while both remain naturally alive in <Subject 3>.\n\nretention_analysis:\n<Subject 1> (appears throughout): fully_preserved - retain his face, hair, clothing, pipe, slim proportions, and fireplace-side placement.\n<Subject 2> (appears throughout): fully_preserved - retain his face, moustache, tweed suit, cane, sturdy proportions, and armchair placement.\n<Subject 3> (appears throughout): fully_preserved - retain the room layout, fireplace, shelves, windows, desk, furniture, rain, and mixed warm-cool lighting.\n\ndetailed_description:\nPhotorealistic live-action Victorian feature-film style, restrained 35 mm texture, natural skin, subtle performance, and consistent eyelines. One continuous medium-wide two-shot from a fully static locked-off camera. No cuts, camera movement, identity swapping, wardrobe changes, extra people, readable text, or exaggerated gestures.\n\n[Shot 1, 00:00.000-00:01.300] <Subject 1> stands beside the fireplace on frame left, his pipe held near his chest, while <Subject 2> sits in the leather armchair on frame right with one hand resting on his cane. Wind-driven rain traces the cool windows behind them. A coal shifts in the grate, briefly sharpening warm firelight across <Subject 1>'s angular profile and <Subject 2>'s moustached face.\n\n[Shot 1, 00:01.300-00:03.200] <Subject 2> leans forward just enough to make the leather chair creak, studies the detective, and asks with familiar curiosity, <d>[English] What if you'd chosen crime?</d> His fingers tighten once around the cane handle. <Subject 1> remains still for a beat, draws quietly from the pipe, and turns only his eyes toward the doctor as smoke curls through the warm light.\n\n[Shot 1, 00:03.200-00:05.166] <Subject 1> meets his eyeline and replies in a low, dry voice, <d>[English] I'd have been remarkably successful.</d> <Subject 2>'s amused expression tightens into thoughtful concern. <Subject 1> allows the faintest private smile as the fire gives one crisp crackle and a distant lightning reflection passes across the rain-streaked glass. Both settle into the charged silence without changing position.\n\noverall_soundscape:\nSteady rain on glass, close coal-fire crackle, faint room tone, one subtle leather creak, and distant carriage wheels. Dialogue stays clear and intimate.\n\nnon_diegetic_music:\nN/A\n",
+      "duration": 5.1666666667,
+      "aspect_ratio": "16:9",
+      "megapixels": 0.5
+    },
+    {
+      "task": "ref2va",
+      "references": [
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_3_1.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_3_2.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_3_3.jpg"
+        }
+      ],
+      "prompt": "subject_definitions:\n<Subject 1> is the abandoned warehouse in <Picture 1>, preserving the open doorway, long wooden table, two chairs, wet reflective floor, storage racks, crates, industrial architecture, sparse overhead lamps, cold rain light, and dim warm practical light.\n<Subject 2> is the younger East Asian man in <Picture 2>, preserving his face, lean build, short messy black hair, dark layered hooded jacket, black cargo pants, work boots, and one plain black backpack.\n<Subject 3> is the middle-aged East Asian man in <Picture 3>, preserving his face, stocky build, slicked-back black hair, black patterned shirt, black trousers, belt, and leather shoes.\n\nsummary:\n[reference generation] In one continuous 5.1667-second crime-thriller shot, <Subject 2> crosses the final steps from the rainy doorway to the table in <Subject 1>, removes his backpack, and places it between himself and the seated <Subject 3>, ending in a compressed silent confrontation.\n\nretention_analysis:\n<Subject 1> (appears throughout): fully_preserved - retain the warehouse geometry, doorway, table, chairs, wet floor, racks, rain, and mixed cold-warm lighting.\n<Subject 2> (appears throughout): fully_preserved - retain his face, hair, lean proportions, dark clothing, wet appearance, and exactly one backpack.\n<Subject 3> (appears throughout): fully_preserved - retain his face, hair, stocky proportions, black clothing, seated posture, and position across the table.\n\ndetailed_description:\nPhotorealistic live-action crime thriller, 16:9, restrained contrast, cold blue rain light and dim amber practical light. One continuous shot with a slow small push-in. Preserve both identities, the spatial axis, and one physically consistent backpack. No dialogue, bodyguards, extra people, duplicate bags, identity swapping, wardrobe changes, readable text, or weapons.\n\n[Shot 1, 00:00.000-00:01.400] From low beside the long table, the camera looks directly toward the rain-filled doorway. <Subject 3> is a dark motionless silhouette at the far end. <Subject 2> strides the final few steps from the doorway with the backpack secured over both shoulders; cold backlight outlines his wet hood and shoulders while his boots kick shallow water across the reflective concrete. The camera pushes rapidly but smoothly toward the table.\n\n[Shot 1, 00:01.400-00:03.450] <Subject 2> reaches the near chair without stopping. In one continuous motion he hooks one strap off his shoulder, rotates his torso, slides the second strap free, and swings the same wet backpack onto the tabletop. It lands firmly between the two men with a heavy impact; water droplets scatter across the wood and the hanging lamp trembles. <Subject 3> does not flinch, following the bag only with his eyes.\n\n[Shot 1, 00:03.450-00:05.166] <Subject 2> drags the near chair back with one sharp scrape and drops into it opposite <Subject 3>. He plants both hands on the wet table without touching the backpack. A lightning flash turns both faces stark for an instant as the camera completes its push-in: the single bag remains centered between them and they lock eyes across it while rain lashes the doorway.\n\noverall_soundscape:\nHeavy rain on metal, distant thunder, measured wet footsteps, soaked fabric and backpack straps, one muted bag impact on wood, and low warehouse room tone. No dialogue.\n\nnon_diegetic_music:\nA restrained low-frequency drone rises slightly as the backpack reaches the table and holds through the final stare.\n",
+      "duration": 5.1666666667,
+      "aspect_ratio": "16:9",
+      "megapixels": 0.5
+    },
+    {
+      "task": "ref2va",
+      "references": [
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_4_1.jpg"
+        }
+      ],
+      "prompt": "subject_definitions:\n<Subject 1> is a tan-skinned adult man with close-cropped dark hair, light stubble, a sand-colored field jacket, and a burgundy scarf, as shown in <Picture 1>.\n<Subject 2> is a vintage brass telescope on a dark tripod, as shown in <Picture 1>.\n<Subject 3> is a small red-glowing metal lantern on a weathered table, as shown in <Picture 1>.\n<Subject 4> is a quiet desert observatory at dusk with soft mountain silhouettes, as shown in <Picture 1>.\n\nsummary:\n[reference generation] In one continuous 5.1667-second shot inside <Subject 4>, <Subject 1> notices a distant flash, turns toward <Subject 2>, adjusts its focus ring once, and reaches the eyepiece as <Subject 3> pulses red.\n\nretention_analysis:\n<Subject 1> (appears in [Shot 1]): fully_preserved - Preserve the same adult identity, facial structure, hair, stubble, jacket, scarf, and body proportions.\n<Subject 2> (appears in [Shot 1]): fully_preserved - Preserve the same brass tube, black fittings, tripod geometry, scale, and position.\n<Subject 3> (appears in [Shot 1]): fully_preserved - Preserve the same metal housing and red light.\n<Subject 4> (appears in [Shot 1]): fully_preserved - Preserve the dusk palette, mountain horizon, and sparse desert setting.\n\ndetailed_description:\nVisual style: cinematic naturalism with warm lantern light against a cool violet dusk. One locked medium shot preserves the composition from <Picture 1>. The camera stays fixed with no pan, tilt, zoom, or dolly.\n\n[Shot 1, 00:00.000-00:01.300] <Subject 1> stands beside <Subject 2> as the final dusk light outlines the brass tube and distant mountain ridge. A faint cold flash crosses his eyes from outside frame. He stops breathing for a beat and turns his gaze sharply toward the telescope while <Subject 3> holds a steady red glow on the table.\n\n[Shot 1, 00:01.300-00:03.600] He reaches across the brass tube, grips the focus ring, and makes exactly one deliberate adjustment. The mechanism gives a precise metal click. Reflected violet sky slides across the brass surface, his scarf lifts in the desert wind, and <Subject 3> flickers once brighter without moving.\n\n[Shot 1, 00:03.600-00:05.166] <Subject 1> leans quickly but naturally to the eyepiece, steadies the telescope with his free hand, and peers through it with sudden concentration. The lantern throws a brief red edge across his cheek and telescope fittings. He holds the tense viewing pose as the distant flash fades behind the mountains.\n\noverall_soundscape:\nA faint desert breeze, a soft metal adjustment click, fabric rustle, and a quiet lantern flame.\n\nnon_diegetic_music:\nN/A\n",
+      "duration": 5.1666666667,
+      "aspect_ratio": "16:9",
+      "megapixels": 0.5
+    },
+    {
+      "task": "ref2va",
+      "references": [
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_5_1.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_5_2.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_5_3.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_5_4.jpg"
+        }
+      ],
+      "prompt": "subject_definitions:\n<Subject 1> is the East Asian woman sword fighter shown in <Picture 1>, preserving her facial identity, black hair tied in a high bun, focused expression, cream martial-arts jacket, and black-handled katana.\n<Subject 2> is the pale-skinned woman fighter shown in <Picture 2>, preserving her facial identity, short layered black hair with bangs, dark eye makeup, black lipstick, black leather jacket, and black clothing. The motorcycle is not present in the target video.\n<Subject 3> is the outdoor competition swimming pool shown in <Picture 3>, preserving the bright turquoise water, blue-and-white lane dividers, pale pool deck, and strong daylight.\n<Subject 4> is the underwater pool environment shown in <Picture 4>, preserving the cyan water, tiled pool floor, dark lane marking, moving caustic light, suspended bubbles, and refracted surface light.\n\nsummary:\n[reference generation] In one continuous 10-second action shot, <Subject 1> and <Subject 2> sprint into a violent exchange beside <Subject 3>. A rolling dodge leads into a left-fist versus right-hand-sword collision, a jumping counter, and a connected two-body tumble across the wet deck. Their momentum throws both women into the pool, where the confrontation finishes underwater inside <Subject 4>.\n\nretention_analysis:\n<Subject 1> (appears throughout): fully_preserved - retain the same face, high bun, cream jacket, body proportions, and single black-handled katana before and after entering the water.\n<Subject 2> (appears throughout): fully_preserved - retain the same face, short black hair, dark makeup, black lipstick, black leather jacket, black clothing, and body proportions before and after entering the water.\n<Subject 3> (appears before the underwater transition): fully_preserved - retain the competition-pool geometry, turquoise water, blue-and-white lane ropes, sunlit deck, and bright daylight.\n<Subject 4> (appears after the underwater transition): fully_preserved - retain the tiled floor, dark lane marking, cyan water, caustic illumination, bubbles, and refracted sunlight.\n\ndetailed_description:\nPhotorealistic live-action action cinema, 16:9 composition, hard bright daylight above water and luminous cyan light below water. Use one continuous aggressively tracking shot with no cuts: low lateral sprint tracking, one fast camera roll during the deck tumble, then a seamless plunge through the waterline. Keep both adult women clearly distinguishable by face, hairstyle, clothing color, and silhouette. <Subject 1> holds exactly one katana in her right hand throughout. <Subject 2> remains unarmed. Any fist-to-sword contact strikes the flat near the guard, never the sharpened edge. No blood, wounds, severed contact, duplicate people, duplicate weapons, motorcycle, readable text, logos, or costume changes.\n\n[Shot 1, 00:00.000-00:02.000] A low handheld camera races parallel to the wet edge of <Subject 3>. <Subject 1> in the cream jacket and <Subject 2> in black leather sprint toward each other from opposite ends of the pool deck. <Subject 1> carries the single katana low in her right hand, blade trailing safely behind. She plants one foot on a low starting block, leaps forward, and brings the sword into a fast diagonal arc. <Subject 2> drops beneath it into a forward shoulder roll, slides across the wet tiles, and rises inside the sword's range as water sprays from both fighters' shoes.\n\n[Shot 1, 00:02.000-00:04.200] <Subject 2> drives upward from the roll with one explosive left punch. <Subject 1> snaps the katana across in her right hand so the punch collides with the flat of the blade immediately beside the guard. The impact produces one sharp metallic crack, a compact spray of sparks, and a ring of displaced droplets. Their faces pass within centimeters. <Subject 2> hooks the sword wrist with her right hand and whips a low leg sweep; <Subject 1> jumps over it, twists in the air, and lands one step from the pool edge without releasing the sword.\n\n[Shot 1, 00:04.200-00:06.800] <Subject 2> immediately tackles <Subject 1> around the waist. <Subject 1> braces her left forearm across <Subject 2>'s shoulder and extends her right sword arm away from both bodies. Locked together, they crash onto the wet deck and complete two fast connected shoulder-over-shoulder rolls. The camera rolls with them at tile level as sky, lane ropes, faces, black leather, and cream fabric whip across frame. <Subject 1> hooks <Subject 2>'s ankle during the second rotation; their combined momentum carries both bodies over the pool lip.\n\n[Shot 1, 00:06.800-00:07.900] Both women rotate once in open air and strike the turquoise surface together in an enormous splash. The camera plunges between them without a cut, crossing the violently folding waterline as daylight becomes refracted cyan and a dense wall of bubbles engulfs the frame.\n\n[Shot 1, 00:07.900-00:10.000] Inside <Subject 4>, their clothes and hair surge in opposite currents while both identities remain clear. <Subject 2> throws one slowed left punch through the bubbles. <Subject 1>, still gripping the single katana in her right hand, blocks with the hilt and her left forearm while keeping the blade pointed safely away. The impact rolls both women apart above the dark lane marking. They kick backward, regain facing guard positions, and end suspended on opposite sides of a rising column of bubbles as caustic light flashes across their faces and the tiled floor.\n\noverall_soundscape:\nRapid wet footfalls, starting-block impact, sword whoosh, rolling bodies, one metallic fist-to-blade crack, sparks, tile scrapes, a heavy synchronized splash, dense bubbles, muffled underwater impact, and filtered pool ambience.\n\nnon_diegetic_music:\nFast taiko-like percussion accelerates through the sprint and deck rolls, cuts completely at the splash, then returns underwater as two muffled bass pulses ending on one suspended metallic note.\n",
+      "duration": 10.0,
+      "aspect_ratio": "16:9",
+      "megapixels": 0.5
+    },
+    {
+      "task": "ref2va",
+      "references": [
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_6_1.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_6_2.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_6_3.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_6_4.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_6_5.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_6_6.jpg"
+        }
+      ],
+      "prompt": "subject_definitions:\n<Subject 1> is the large football stadium in <Picture 1>, preserving its green striped pitch, white field markings, blue seating tiers, open roofline, and broad daylight scale.\n<Subject 2> is the football trophy in <Picture 2>, preserving its gold supports, red central column, black base, and fixed black-and-white football at the top. The football remains permanently attached to the trophy and never becomes the object being kicked.\n<Subject 3> is the purple cosmic energy phenomenon in <Picture 3>, preserving its black star field, luminous magenta core, violet plasma layers, and sparkling particles. It defines the high-altitude explosion after the meteor is kicked back into the sky.\n<Subject 4> is the adult woman in the orange astronaut suit in <Picture 4>, preserving her facial identity, brown hair, orange flight suit with black trim, body proportions, white boots, and black helmet. She is the football champion standing on the pitch; the helmet rests on the grass beside the trophy rather than covering her face.\n<Subject 5> is the severe storm sky in <Picture 5>, preserving the dense charcoal clouds, layered turbulent cloud texture, dim gray light, and sudden threatening weather.\n<Subject 6> is the meteor approaching Earth in <Picture 6>, preserving the curved blue Earth horizon, black space, incandescent orange meteor core, fragmented fiery tail, smoke plume, and atmospheric entry direction. It defines the single incoming meteor before and during the kick.\n\nsummary:\n[reference generation] In one continuous 10-second science-fiction sports shot inside <Subject 1>, <Subject 4> has just received <Subject 2>. She notices <Subject 6>'s fiery meteor descending from above Earth toward the pitch, sets the trophy safely beside her, and kicks the meteor back into the sky like a football. It explodes high above the stadium as <Subject 3>'s purple cosmic energy, and the bright weather instantly transforms into <Subject 5>'s dark storm sky.\n\nretention_analysis:\n<Subject 1> (appears throughout): fully_preserved - retain the pitch geometry, white markings, blue seats, stadium scale, and recognizable bowl-shaped architecture through the weather transition.\n<Subject 2> (appears throughout): fully_preserved - retain exactly one intact gold-red-black trophy with its football permanently attached, first in the champion's hands and then upright on the grass.\n<Subject 3> (appears after the kick): fully_preserved - retain the magenta core, violet plasma layers, black-space contrast, and particles in the distant high-altitude explosion.\n<Subject 4> (appears throughout): fully_preserved - retain the same adult woman's face, hair, orange astronaut suit, black trim, proportions, and white boots during the full-body kick.\n<Subject 5> (appears after the explosion): attribute_transfer - the charcoal cloud mass, turbulent texture, and dim storm lighting replace the original clear daylight without changing the stadium or people.\n<Subject 6> (appears before and during the kick): partially_preserved - retain the incandescent orange core, fragmented fiery tail, smoke plume, and atmospheric-entry direction while reducing the meteor to a kickable football-sized object near the pitch.\n\ndetailed_description:\nPhotorealistic live-action science-fiction sports cinema, 16:9, large stadium scale, physically readable staging, and one continuous camera move with no cuts. Keep exactly one woman, one intact trophy, one black helmet, and one meteor. The trophy's football never detaches. No spectators, additional players, duplicate objects, readable text, logos, injuries, ground impact, stadium damage, or identity changes.\n\n[Shot 1, 00:00.000-00:02.500] A low medium-wide camera faces <Subject 4> near the center circle of <Subject 1>. She stands proudly in the orange astronaut suit, holding <Subject 2> at chest height; her uncovered face is clearly visible, and the black helmet rests on the grass at her left. The stadium is empty under bright daylight. A hot orange reflection suddenly crosses the trophy and her face. She looks upward as one football-sized meteor derived from <Subject 6>, with an incandescent orange core, fragmented fiery tail, and narrow smoke plume, descends steeply toward the pitch behind her. For a brief instant, the high sky reveals the curved blue Earth-horizon composition from <Picture 6> before the camera returns to stadium scale.\n\n[Shot 1, 00:02.500-00:05.500] <Subject 4> places <Subject 2> upright on the grass beside the helmet without dropping or deforming it. She takes two quick steps toward the descending meteor. The camera tracks sideways and lowers to keep her entire body, the stationary trophy, and the meteor visible. Just before the meteor reaches knee height, she plants her left foot and strikes it once with the instep of her right boot in a powerful football kick. Her leg anatomy and balance remain coherent. The meteor compresses slightly at contact, then reverses direction and rockets upward, retaining <Subject 6>'s orange core, fiery fragments, and smoke tail. The trophy remains intact and stationary behind her.\n\n[Shot 1, 00:05.500-00:10.000] The camera whip-tilts upward following the meteor. High above the open stadium, it expands into <Subject 3>'s broad magenta-violet cosmic explosion without touching the ground. A deep shockwave rolls across the clouds. Bright daylight collapses into <Subject 5>'s dense charcoal storm sky within one visible atmospheric transition; turbulent clouds spiral around the fading purple core and the stadium light becomes cold and dim. The camera tilts down slightly for the final wide composition: <Subject 4> stands in a completed kicking pose on the pitch, looking upward, while the intact trophy and helmet remain beside her and the darkened stadium is silhouetted beneath the distant explosion.\n\noverall_soundscape:\nOpen-stadium wind, a low descending cosmic rumble, trophy contact with grass, two quick footsteps, one heavy boot impact, a sharp upward plasma whoosh, a distant high-altitude explosion, rolling thunder, and sudden storm wind. No dialogue or crowd.\n\nnon_diegetic_music:\nA brief heroic brass pulse rises during the approach, stops at the kick, and returns as a low ominous chord when the storm clouds cover the stadium.\n",
+      "duration": 10.0,
+      "aspect_ratio": "16:9",
+      "megapixels": 0.5
+    },
+    {
+      "task": "ref2va",
+      "prompt": "subject_definitions:\n<Picture 1> defines the Martian surface below, preserving the layered ochre ridges, wind-shaped ground, barren geology, and immense planetary scale. Do not reproduce panorama seams, borders, rover hardware, vegetation, or buildings.\n<Picture 2> defines <Subject 1>, the sole human defense operator. Preserve her face, skin tone, short natural hair, age, and body proportions. Ignore her studio clothing and backdrop.\n<Picture 3> defines <Suit 1>, the operator's dark retro-futuristic pressure suit, helmet, padded torso, gloves, hoses, and life-support details. Transfer it onto <Subject 1>; ignore the original wearer and cabin. Keep <Subject 1>'s frightened face visible through the visor.\n<Picture 4> defines <Weapon 1>, one massive white-and-graphite orbital rail cannon with a long rectangular barrel, rotating armored base, exposed joints, and cyan energy accents.\n<Picture 5> defines <Craft 1>, one dark graphite alien flying saucer with a low disc body, segmented rim, cyan underside lights, swept fins, and transparent central dome.\n<Picture 6> defines <Subject 2>, the sole alien pilot. Preserve its blue-gray skin, elongated head, large dark eyes, slender proportions, and fitted black suit with cyan seams.\n<Picture 7> defines <Vessel 1>, the human defense spacecraft and its exposed armored weapons deck. Preserve the white-and-graphite plates, cyan guide lights, rails, barriers, and broad cannon platform. The entire deck belongs to one falling spacecraft rather than a fixed station.\n<Picture 8> defines <Console 1>, one rugged physical cannon-control console with guarded cyan controls, toggles, cables, and a prominent mechanical firing lever.\n<Picture 9> defines <Cockpit 1>, the saucer cockpit beneath the transparent dome. Preserve its curved graphite ribs, alien pilot seat, sculpted controls, cyan seams, and canopy geometry. It contains only <Subject 2>.\n\nsummary:\n[reference generation] <Vessel 1> and <Craft 1> are both falling out of control toward the Martian surface. As the ground rushes up, a terrified <Subject 1> pulls the firing lever on <Console 1>. <Weapon 1> fires at point-blank range, knocks <Craft 1> away from the human vessel, and sends the saucer crashing into Mars while <Vessel 1> barely pulls out of its dive.\n\nretention_analysis:\nPicture 1 supplies only the rapidly approaching Martian surface. Picture 2 supplies only the human identity. Picture 3 supplies only the pressure suit. Picture 4 supplies only the rail cannon. Picture 5 supplies only the saucer exterior. Picture 6 supplies only the alien identity. Picture 7 supplies only the falling human spacecraft and weapons-deck layout. Picture 8 supplies only the firing console. Picture 9 supplies only the alien cockpit. Keep one human, one alien, one human spacecraft, one cannon, one console, and one saucer. Do not add other spacecraft, weapons, people, aliens, text, logos, or Earth scenery.\n\ndetailed_description:\nPhotorealistic live-action science-fiction disaster cinema, cinematic 16:9, one continuous ten-second shot with violent but physically coherent motion. The camera is anchored low on <Vessel 1>'s shaking armored deck. <Weapon 1> dominates frame left; <Console 1> and <Subject 1> in <Suit 1> occupy frame right. The vessel is pitched steeply downward. Mars expands rapidly across the entire lower background, while red-orange atmospheric plasma and loose fragments streak upward past the deck. <Craft 1> falls beside the human vessel at dangerously close range, scraping through the plasma. Through its transparent dome, <Subject 2> is clearly visible fighting the controls inside <Cockpit 1>.\n\n[00:00.000-00:01.400] Both spacecraft tumble toward Mars. The horizon rotates, the deck bucks violently, warning lights pulse, and the Martian ridges grow larger every instant. <Craft 1> slides closer until its rim nearly clips the human deck. <Subject 1> looks from the approaching ground to the saucer with visible panic, braces both boots, and reaches desperately for the firing lever.\n\n[00:01.400-00:03.500] <Subject 1> grips the lever with both gloved hands and yanks it fully downward. Cyan electromagnetic energy races along <Weapon 1> in three rapid stages. The cannon rotates a few degrees toward the nearby saucer and fires once with a brutal recoil that shakes the whole deck. A concentrated blue-white projectile crosses the narrow gap.\n\n[00:03.500-00:05.700] The projectile tears through the outer rim of <Craft 1>, away from the transparent dome. A violent burst of sparks, molten fragments, and cyan electrical arcs erupts between the two falling spacecraft. The saucer spins away from <Vessel 1>; <Subject 2> is thrown against the cockpit controls as the intact dome flashes past the camera. The human cannon settles crookedly from recoil while <Subject 1> remains locked on the lever.\n\n[00:05.700-00:10.000] <Craft 1> tumbles below the human vessel, strikes the Martian surface, and produces a huge expanding fireball and towering rust-colored dust plume. The blast illuminates the underside of <Vessel 1>. At the final possible moment, the human spacecraft's engines flare bright cyan and pull the deck sharply above a rocky ridge. The camera shudders as the vessel skims past the terrain, ending on <Subject 1>'s terrified face, the recoiling cannon, and the enormous impact cloud behind them. No cuts, duplicate subjects, planetary destruction, gore, readable text, or unexplained object transformation.\n\noverall_soundscape:\nViolent hull vibration, rushing upper-atmosphere wind, suit breathing turning into a gasp, warning alarms, a heavy lever slam, escalating electromagnetic whine, one concussive rail-cannon crack, tearing metal, alien engine failure, a delayed planetary impact, and a final engine roar. No dialogue.\n\nnon_diegetic_music:\nRapid low percussion and rising brass pressure that cuts out at the cannon shot, followed by one massive bass impact and a sustained note during the last-second pull-up.\n",
+      "references": [
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_7_1.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_7_2.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_7_3.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_7_4.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_7_5.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_7_6.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_7_7.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_7_8.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_7_9.jpg"
+        }
+      ],
+      "duration": 10.0,
+      "megapixels": 0.5,
+      "aspect_ratio": "16:9"
+    },
+    {
+      "task": "ref2va",
+      "references": [
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_8_1.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_8_2.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_8_3.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_8_4.jpg"
+        },
+        {
+          "type": "image",
+          "path": "ref2va_testset/ref2va_test_8_5.jpg"
+        }
+      ],
+      "prompt": "subject_definitions:\n<Picture 1> defines <Environment 1>, the gamer and computer room. Preserve the seated operator on frame right, desk, monitor, keyboard, dim interior, curtains, and solid exterior wall. Replace all existing monitor content; do not preserve game graphics, text, logos, or interface elements.\n<Picture 2> defines <Object 1>, the sole blue sport motorcycle. Preserve its blue-and-black bodywork, aggressive aerodynamic silhouette, wheels, headlight geometry, suspension, and mechanical proportions. Remove all manufacturer marks, model text, racing decals, and license plates. The motorcycle remains riderless.\n<Picture 3> defines <Motion 1>, the away-from-camera acceleration, low rear viewpoint, strong centered vanishing point, and tree-lined paved-road destination. Preserve only the motion direction, perspective depth, and leafy corridor. Ignore the source cyclist, bicycle, backpack, bicycle-lane markings, traffic signs, distant vehicles, and readable text. In the target video, widen the path into a normal road suitable for <Object 1>.\n<Picture 4> defines <Environment 2>, the cyan-and-magenta virtual light tunnel visible only inside the monitor.\n<Picture 5> defines <Effect 1>, the rectangular particle-grid portal and luminous digital fragments used at the monitor boundary.\n\nsummary:\n[reference generation] <Object 1> races out of <Environment 2>, punches through <Effect 1> at the monitor, becomes full size inside <Environment 1>, then accelerates directly through the room's exterior wall. Bricks, concrete, plaster, and dust explode outward as the riderless motorcycle bursts onto the road and speeds away using <Motion 1>.\n\nretention_analysis:\nPicture 1 supplies only the operator, room, desk, monitor, and breakable exterior wall. Picture 2 supplies the only motorcycle identity. Picture 3 supplies only the final rear-view motion, vanishing-point geometry, and tree-lined road direction. Picture 4 supplies only the virtual tunnel. Picture 5 supplies only the digital portal. Keep one operator and one riderless motorcycle. Do not copy the original game screen, cyclist, bicycle, backpack, bicycle-lane markings, traffic signs, distant vehicles, readable text, logos, license plates, or additional vehicles. The wall breaks only when struck by <Object 1>; the operator and desk remain safely to the side.\n\ndetailed_description:\nPhotorealistic live-action science-fiction action commercial, cinematic 16:9, one continuous ten-second shot with escalating scale and strong physical impact. Start from a low three-quarter view that keeps the monitor and desk on frame left, the startled operator on frame right, and a solid exterior wall visible beyond the motorcycle's escape line.\n\n[00:00.000-00:01.200] The monitor abruptly fills with <Environment 2>. Cyan-magenta light floods the dark room as a tiny <Object 1> accelerates from deep inside the tunnel directly toward the viewer. <Effect 1> expands beyond the monitor frame, bending loose papers and curtain fabric toward the screen. The operator turns in alarm and pushes back from the desk.\n\n[00:01.200-00:02.600] The front tire of <Object 1> punches through the monitor plane first. The screen surface bursts into thousands of luminous square particles rather than glass. The same motorcycle scales smoothly to full physical size in midair and lands hard on the floor. Its suspension compresses, both tires bite, sparks rip backward beneath the chassis, and the headlight flashes across the operator's frightened face. The motorcycle misses the operator and desk by a narrow but clear margin.\n\n[00:02.600-00:05.100] Without slowing, <Object 1> aims directly at the solid exterior wall. The front wheel and fairing strike it with enormous force. A circular fracture races across the plaster and masonry before the whole wall erupts outward. Large bricks, concrete chunks, splintered framing, plaster fragments, insulation, and a dense pressure wave blast into the open air. Dust rolls back through the room while smaller fragments spin past the camera. The motorcycle remains coherent and punches completely through the new opening.\n\n[00:05.100-00:10.000] The camera whip-pans through the collapsing hole and drops into the low rear chase composition from <Motion 1>. <Object 1> lands on the outdoor road amid bouncing masonry, fishtails once, regains traction, and accelerates rapidly toward the vanishing point. Behind it, the broken wall continues collapsing in a huge dust cloud while the cyan portal flickers inside the exposed room. No cuts, rider, duplicated motorcycles, collision with the operator, rain, fireball, readable text, brand marks, or impossible wheel deformation.\n\noverall_soundscape:\nComputer fan hum, rising digital tunnel roar, particle crackle, a heavy tire landing, motor surge, floor sparks, one massive wall impact, exploding masonry, falling debris, dust pressure, tire squeal, and accelerating road sound. No speech.\n\nnon_diegetic_music:\nA fast electronic build that peaks at the wall impact, followed by heavy percussion and a final accelerating synth pulse.\n",
+      "duration": 10.0,
+      "aspect_ratio": "16:9",
+      "megapixels": 0.5
+    }
+  ]
+}
