@@ -83,29 +83,6 @@ Minimax-H3-Turbo provides MiniMax-H3 Turbo LoRA checkpoints, plus Diffusers batc
   </tbody>
 </table>
 
-### FL2VA Turbo 8-step v1.0 768p
-
-The **FL2VA Turbo 8-step v1.0 768p** LoRA is our recommended checkpoint when generation quality is preferred over the maximum speed offered by the 4-step variants.
-
-Compared with the 4-step checkpoints, the additional denoising steps provide improved visual detail, temporal consistency, and audio generation quality while remaining substantially faster than the original MiniMax-H3 inference configuration.
-
-Recommended settings:
-
-| Setting | Value |
-|---|---|
-| Resolution | 768p |
-| Recommended NFE | 8 |
-| Video shift | 6 |
-| Audio shift | 3 |
-| Sampler | Euler |
-| Scheduler | Simple |
-| Supported tasks | T2VA, I2VA and FL2VA |
-
-Checkpoint downloads:
-
-- [Diffusers / LightX2V BF16](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_768p_bf16.safetensors)
-- [ComfyUI BF16](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_768p_comfyui_bf16.safetensors)
-
 ### Note on shift
 
 For `NFE = N`, define the N transformer evaluation points on the unshifted grid as
