@@ -1,7 +1,10 @@
 # [Minimax-H3-Turbo](https://github.com/ModelTC/Minimax-H3-Turbo)
 
-Minimax-H3-Turbo provides MiniMax-H3 Turbo LoRA checkpoints, plus Diffusers
-batch inference and ComfyUI workflows.
+Minimax-H3-Turbo provides MiniMax-H3 Turbo LoRA checkpoints, plus Diffusers batch inference and ComfyUI workflows.
+
+- **Online Studio:** [x2v.light-ai.top](https://x2v.light-ai.top/)
+- **API Documentation:** [x2v.light-ai.top/api-docs](https://x2v.light-ai.top/api-docs)
+- **Model Weights:** [Hugging Face](https://huggingface.co/lightx2v/Minimax-h3-Turbo)
 
 ## 1. Model specs
 
@@ -48,10 +51,22 @@ batch inference and ComfyUI workflows.
         <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors">ComfyUI</a>
       </td>
       <td align="center">FL2VA / T2VA</td>
-      <td align="center">768p<br><sub>1344x768</sub></td>
+      <td align="center">768p<br><sub>1344×768</sub></td>
       <td align="center">6 / 3</td>
       <td align="center">4</td>
       <td align="center">4</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>FL2VA Turbo 8-step v1.0 768p</strong><br>
+        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_768p_bf16.safetensors">Diffusers</a> ·
+        <a href="https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_768p_comfyui_bf16.safetensors">ComfyUI</a>
+      </td>
+      <td align="center">FL2VA / T2VA</td>
+      <td align="center">768p<br><sub>1344×768</sub></td>
+      <td align="center">6 / 3</td>
+      <td align="center">8</td>
+      <td align="center">8</td>
     </tr>
     <tr>
       <td>
@@ -68,6 +83,28 @@ batch inference and ComfyUI workflows.
   </tbody>
 </table>
 
+### FL2VA Turbo 8-step v1.0 768p
+
+The **FL2VA Turbo 8-step v1.0 768p** LoRA is our recommended checkpoint when generation quality is preferred over the maximum speed offered by the 4-step variants.
+
+Compared with the 4-step checkpoints, the additional denoising steps provide improved visual detail, temporal consistency, and audio generation quality while remaining substantially faster than the original MiniMax-H3 inference configuration.
+
+Recommended settings:
+
+| Setting | Value |
+|---|---|
+| Resolution | 768p |
+| Recommended NFE | 8 |
+| Video shift | 6 |
+| Audio shift | 3 |
+| Sampler | Euler |
+| Scheduler | Simple |
+| Supported tasks | T2VA, I2VA and FL2VA |
+
+Checkpoint downloads:
+
+- [Diffusers / LightX2V BF16](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_768p_bf16.safetensors)
+- [ComfyUI BF16](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_768p_comfyui_bf16.safetensors)
 
 ### Note on shift
 
@@ -122,13 +159,38 @@ policies through `--reference-resize-mode` and defaults to `match`. Passing
 (the fixed 2048-pixel short edge). For our distilled models, **we recommend
 selecting `match`** so inference uses the same resizing policy as training.
 
-## 2. Diffusers setup and inference
+## 2. Online Studio and API
+
+### Online App
+
+Try the MiniMax-H3 Turbo LoRA directly in [LightX2V Studio](https://x2v.light-ai.top/).
+
+The Studio currently uses the [FL2VA Turbo 8-step v1.0 768p LoRA](https://huggingface.co/lightx2v/Minimax-h3-Turbo/blob/main/minimax_h3_fl2v_turbo_8step_v1.0_768p_bf16.safetensors).
+
+- **Online Studio:** [https://x2v.light-ai.top/](https://x2v.light-ai.top/)
+- **Current model:** FL2VA Turbo 8-step v1.0 768p
+- **Recommended settings:** 8 NFE, video shift 6, audio shift 3
+
+> The model version deployed in the Studio may be updated over time.
+
+### Studio Preview
+
+<!-- Drag and drop the LightX2V Studio screenshot below this line. -->
+
+
+### Online API
+
+Integrate MiniMax-H3 Turbo into your application through the LightX2V API:
+
+- **API Documentation:** [https://x2v.light-ai.top/api-docs](https://x2v.light-ai.top/api-docs)
+
+## 3. Diffusers setup and inference
 
 See [DIFFUSERS_SETUP_AND_INFERENCE.md](DIFFUSERS_SETUP_AND_INFERENCE.md) for
 environment setup, checkpoint downloads, test JSON files, and single- or
 multi-GPU inference commands.
 
-## 3. ComfyUI inference
+## 4. ComfyUI inference
 
 See [COMFYUI_SETUP_AND_INFERENCE.md](COMFYUI_SETUP_AND_INFERENCE.md) for
 ComfyUI requirements, model installation, inputs, prompts, and run instructions.
@@ -153,11 +215,11 @@ or more reference images through the reference-input branch.
 For detailed workflow inputs and execution steps, see
 [COMFYUI_SETUP_AND_INFERENCE.md](COMFYUI_SETUP_AND_INFERENCE.md).
 
-## 4. Roadmap
+## 5. Roadmap
 
 1. Improve the visual quality and consistency of Ref2VA and FL2VA Turbo.
 
-## 5. Acknowledgements
+## 6. Acknowledgements
 
 Some Ref2VA test cases and reference assets are adapted from public showcases on
 the [Hailuo website](https://hailuoai.video/) and from the [MiniMax-H3 discussion
